@@ -1,0 +1,41 @@
+.nav-breadcrumb a:link,
+.nav-breadcrumb a:visited,
+.nav-breadcrumb a:hover,
+.nav-breadcrumb a:active{
+    color:#bbb;
+}
+.nav-breadcrumb{
+    font-size: 80%;
+    font-weight: 400;
+    padding:0px;
+    margin:0px;
+}
+.nav-breadcrumb li{
+    display:inline;
+}
+.nav-breadcrumb li:after{
+    content: ">";
+}
+.nav-breadcrumb li:last-child:after{
+    content: "";
+}
+
+.address-container{
+    background-color: #eee;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
+.custom-labels label{
+    font-weight: bold;
+}
+
+.product-similar.details-current-product{
+    background-color: #eee;
+    border-radius: 4px;
+}

@@ -1,0 +1,82 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33829.357
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotnetMarketplace.Core", "src\DotnetMarketplace.Domain\DotnetMarketplace.Core.csproj", "{FB40C3E0-7540-48EC-8C8E-7A8B6CF778C3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sales", "Sales", "{829FC54B-0AFB-4AD0-979B-FF064ED7C497}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Catalog", "Catalog", "{A0FDB2C6-D434-4888-A9D4-9F83CB0963A7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotnetMarketplace.Sales.Domain", "src\DotnetMarketplace.Sales.Domain\DotnetMarketplace.Sales.Domain.csproj", "{C3E82F14-2949-499F-A546-3FA1D1F607CF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotnetMarketplace.Catalog.Domain", "src\DotnetMarketplace.Catalog.Domain\DotnetMarketplace.Catalog.Domain.csproj", "{D7B90A75-46EA-4047-9BEF-5C3005803CF2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{1BCCB270-6E3B-43F7-9938-0648A6A262E5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Register", "Register", "{A290D81D-F054-4A57-8C45-D8EDA32C688A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotnetMarketplace.Register.Domain", "src\DotnetMarketplace.Register.Domain\DotnetMarketplace.Register.Domain.csproj", "{4FD0C4E5-6F09-4218-B61D-477EB6013AC6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApps", "WebApps", "{0C536693-498B-4148-9CDC-B05E93CC0453}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotnetMarketplace.WebApps.MVC", "src\DotnetMarketplace.WebApps.MVC\DotnetMarketplace.WebApps.MVC.csproj", "{87689498-3E57-489E-95F6-91C8D3922326}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ContentManager", "ContentManager", "{E8D851AC-42D9-4B7D-9A0F-4BE7BF2AF853}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotnetMarketPlace.ContentManager.Domain", "src\DotnetMarketPlace.ContentManager.Domain\DotnetMarketPlace.ContentManager.Domain.csproj", "{CDA2EEEB-790C-4B09-B82B-115878030F76}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotnetMarketPlace.ContentManager.Data", "src\DotnetMarketPlace.ContentManager.Data\DotnetMarketPlace.ContentManager.Data.csproj", "{00C45049-E342-4D7C-8F3D-565A70FB9579}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FB40C3E0-7540-48EC-8C8E-7A8B6CF778C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB40C3E0-7540-48EC-8C8E-7A8B6CF778C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB40C3E0-7540-48EC-8C8E-7A8B6CF778C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB40C3E0-7540-48EC-8C8E-7A8B6CF778C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3E82F14-2949-499F-A546-3FA1D1F607CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3E82F14-2949-499F-A546-3FA1D1F607CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3E82F14-2949-499F-A546-3FA1D1F607CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3E82F14-2949-499F-A546-3FA1D1F607CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7B90A75-46EA-4047-9BEF-5C3005803CF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7B90A75-46EA-4047-9BEF-5C3005803CF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7B90A75-46EA-4047-9BEF-5C3005803CF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7B90A75-46EA-4047-9BEF-5C3005803CF2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4FD0C4E5-6F09-4218-B61D-477EB6013AC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FD0C4E5-6F09-4218-B61D-477EB6013AC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FD0C4E5-6F09-4218-B61D-477EB6013AC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FD0C4E5-6F09-4218-B61D-477EB6013AC6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87689498-3E57-489E-95F6-91C8D3922326}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87689498-3E57-489E-95F6-91C8D3922326}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87689498-3E57-489E-95F6-91C8D3922326}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87689498-3E57-489E-95F6-91C8D3922326}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDA2EEEB-790C-4B09-B82B-115878030F76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDA2EEEB-790C-4B09-B82B-115878030F76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDA2EEEB-790C-4B09-B82B-115878030F76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDA2EEEB-790C-4B09-B82B-115878030F76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00C45049-E342-4D7C-8F3D-565A70FB9579}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00C45049-E342-4D7C-8F3D-565A70FB9579}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00C45049-E342-4D7C-8F3D-565A70FB9579}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00C45049-E342-4D7C-8F3D-565A70FB9579}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{FB40C3E0-7540-48EC-8C8E-7A8B6CF778C3} = {1BCCB270-6E3B-43F7-9938-0648A6A262E5}
+		{C3E82F14-2949-499F-A546-3FA1D1F607CF} = {829FC54B-0AFB-4AD0-979B-FF064ED7C497}
+		{D7B90A75-46EA-4047-9BEF-5C3005803CF2} = {A0FDB2C6-D434-4888-A9D4-9F83CB0963A7}
+		{4FD0C4E5-6F09-4218-B61D-477EB6013AC6} = {A290D81D-F054-4A57-8C45-D8EDA32C688A}
+		{87689498-3E57-489E-95F6-91C8D3922326} = {0C536693-498B-4148-9CDC-B05E93CC0453}
+		{CDA2EEEB-790C-4B09-B82B-115878030F76} = {E8D851AC-42D9-4B7D-9A0F-4BE7BF2AF853}
+		{00C45049-E342-4D7C-8F3D-565A70FB9579} = {E8D851AC-42D9-4B7D-9A0F-4BE7BF2AF853}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2A7830BE-9810-4098-A590-E89A883429E1}
+	EndGlobalSection
+EndGlobal
