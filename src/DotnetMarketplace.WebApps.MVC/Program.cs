@@ -1,3 +1,6 @@
+using DotnetMarketplace.Catalog.Data.Data;
+using DotnetMarketplace.Catalog.Data.Repositories;
+using DotnetMarketplace.Catalog.Domain.Repositories;
 using DotnetMarketPlace.ContentManager.Data.Data;
 using DotnetMarketPlace.ContentManager.Data.Repositories;
 using DotnetMarketPlace.ContentManager.Domain.Repositories;
@@ -11,7 +14,12 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ContentManagerContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+builder.Services.AddDbContext<CatalogContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 builder.Services.AddScoped<ICarouselRepository, CarouselRepository>();
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
 var app = builder.Build();
 

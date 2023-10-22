@@ -8,9 +8,15 @@ namespace DotnetMarketPlace.ContentManager.Domain.Entities
         public int Ordem { get; private set; }
         public CarouselImage(string fileName, int ordem)
         {
-            Id = Guid.NewGuid();
             FileName = fileName;
             Ordem = ordem;
+        }
+
+        public override void Validate()
+        {
+            if (string.IsNullOrEmpty(FileName)) throw new DomainException("Informe o nome do Arquivo");
+
+            if (Ordem > 0) throw new DomainException("A ordem deve ser maior que 0");
         }
     }
 }

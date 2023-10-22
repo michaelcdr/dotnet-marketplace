@@ -15,6 +15,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DotnetMarketplace.Catalog.Application\DotnetMarketplace.Catalog.Application.csproj" />
+    <ProjectReference Include="..\DotnetMarketplace.Catalog.Data\DotnetMarketplace.Catalog.Data.csproj" />
     <ProjectReference Include="..\DotnetMarketPlace.ContentManager.Data\DotnetMarketPlace.ContentManager.Data.csproj" />
   </ItemGroup>
 

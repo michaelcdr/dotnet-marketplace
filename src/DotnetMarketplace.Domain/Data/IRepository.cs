@@ -1,9 +1,4 @@
 ﻿using DotnetMarketplace.Core.DomainObjects;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DotnetMarketplace.Core.Data
 {
@@ -11,6 +6,4 @@ namespace DotnetMarketplace.Core.Data
     {
         IUnitOfWork UnitOfWork { get; }
     }
-
-    
 }

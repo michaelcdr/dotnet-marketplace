@@ -43,14 +43,5 @@ namespace DotnetMarketplace.WebApps.MVC.Models
     public class HomeOffersViewModel 
     {
     
-    }
-
-    public class HighlightCategory
-    {
-        public string Id { get; set; } = string.Empty;
-
-        public string Title { get; set; } = string.Empty;
-        public string Image { get; set; } = string.Empty;
-
-    }
+    } 
 }

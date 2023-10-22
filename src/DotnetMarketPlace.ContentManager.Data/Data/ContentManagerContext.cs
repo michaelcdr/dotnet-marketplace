@@ -28,6 +28,9 @@ namespace DotnetMarketPlace.ContentManager.Data.Data
 
             modelBuilder.Ignore<Event>();
 
+
+           
+
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(ContentManagerContext).Assembly);
         }
 
@@ -36,9 +39,9 @@ namespace DotnetMarketPlace.ContentManager.Data.Data
             base.OnConfiguring(optionsBuilder);
         }
 
-        public Task<bool> Commit()
+        public async Task<bool> Commit()
         {
-            throw new NotImplementedException();
+            return await SaveChangesAsync() > 0;
         }
     }
 }
