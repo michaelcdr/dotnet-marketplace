@@ -2,11 +2,11 @@
 
 namespace DotnetMarketplace.Catalog.Domain.Entities
 {
-    public class ProductsComments : Entity
+    public class ProductComment : Entity
     {
-        protected ProductsComments() { }
+        protected ProductComment() { }
 
-        public ProductsComments(Guid productId, 
+        public ProductComment(Guid productId, 
                                 Product product, 
                                 string title, 
                                 string description, 

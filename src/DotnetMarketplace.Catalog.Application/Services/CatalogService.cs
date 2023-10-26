@@ -14,7 +14,7 @@ namespace DotnetMarketplace.Catalog.Application.Services
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+ 
         }
 
         public async Task<List<HighlightCategoryViewModel>> GetCategories()
@@ -28,7 +28,25 @@ namespace DotnetMarketplace.Catalog.Application.Services
                 categoriesViewModel.Add(new HighlightCategoryViewModel
                 {
                     Id = category.Id.ToString(),
-                    Image = category.Image ?? string.Empty,
+                    Image = $"/img/categories/{(category.Image ?? string.Empty)}",
+                    Title = category.Title,
+                });
+            }
+
+            return categoriesViewModel;
+        }
+
+        public async Task<List<CategoryItemMenu>> GetCategoriesNavMenu()
+        {
+            List<Category> categories = await _categoryRepository.GetCategories();
+
+            var categoriesViewModel = new List<CategoryItemMenu>();
+
+            foreach (var category in categories)
+            {
+                categoriesViewModel.Add(new CategoryItemMenu
+                {
+                    Id = category.Id.ToString(), 
                     Title = category.Title,
                 });
             }

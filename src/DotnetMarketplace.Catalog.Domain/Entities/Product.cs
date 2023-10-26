@@ -18,7 +18,7 @@ namespace DotnetMarketplace.Catalog.Domain.Entities
         public Guid SubCategoryId { get; private set; } 
         public SubCategory? SubCategory { get; private set; }    
         public ICollection<AttributeValue> AttributeValues { get; private set; } = new HashSet<AttributeValue>();
-        public ICollection<ProductsComments> Comments { get; private set; } = new HashSet<ProductsComments>();
+        public ICollection<ProductComment> Comments { get; private set; } = new HashSet<ProductComment>();
         public ICollection<ProductImage> Images { get; private set; } = new HashSet<ProductImage>();
 
         protected Product() { }

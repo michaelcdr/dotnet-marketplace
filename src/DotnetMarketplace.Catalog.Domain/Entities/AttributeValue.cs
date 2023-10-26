@@ -11,6 +11,7 @@ namespace DotnetMarketplace.Catalog.Domain.Entities
         public string Value { get; private set; } = string.Empty;
 
         protected AttributeValue() { }
+
         public AttributeValue(Product product, Attribute attribute, string value)
         {
             AttributeId = attribute.Id;

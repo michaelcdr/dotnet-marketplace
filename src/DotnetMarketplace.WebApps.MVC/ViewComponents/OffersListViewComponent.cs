@@ -1,4 +1,4 @@
-﻿using DotnetMarketplace.WebApps.MVC.Models;
+﻿using DotnetMarketplace.Catalog.Application.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DotnetMarketplace.WebApps.MVC.ViewComponents

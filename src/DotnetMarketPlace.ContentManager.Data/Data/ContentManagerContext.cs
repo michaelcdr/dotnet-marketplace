@@ -7,13 +7,13 @@ namespace DotnetMarketPlace.ContentManager.Data.Data
 {
     public class ContentManagerContext : DbContext, IUnitOfWork
     {
-        public DbSet<CarouselImage> CarouselImages { get; set; }
-
         public ContentManagerContext(DbContextOptions<ContentManagerContext> options) 
             : base(options) 
         {
         
         }
+        
+        public DbSet<CarouselImage> CarouselImages { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -26,10 +26,7 @@ namespace DotnetMarketPlace.ContentManager.Data.Data
                 property.SetColumnType("varchar(100)");
             }
 
-            modelBuilder.Ignore<Event>();
-
-
-           
+            modelBuilder.Ignore<Event>(); 
 
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(ContentManagerContext).Assembly);
         }

@@ -15,7 +15,7 @@ namespace DotnetMarketplace.Catalog.Data.Data
         public DbSet<Category> Categories { get; set; }
         public DbSet<SubCategory> SubCategories { get; set; }
         public DbSet<Product> Products { get; set; }
-        public DbSet<ProductsComments> ProductsComments { get; set; }
+        public DbSet<ProductComment> ProductsComments { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

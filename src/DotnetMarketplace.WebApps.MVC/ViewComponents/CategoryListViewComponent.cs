@@ -6,9 +6,9 @@ namespace DotnetMarketplace.WebApps.MVC.ViewComponents
 {
     public class CategoryListViewComponent : ViewComponent
     {
-        private readonly ICatalogoService _catalogoService;
+        private readonly ICatalogService _catalogoService;
 
-        public CategoryListViewComponent(ICatalogoService catalogoService)
+        public CategoryListViewComponent(ICatalogService catalogoService)
         {
             _catalogoService = catalogoService; 
         }

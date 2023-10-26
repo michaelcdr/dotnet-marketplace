@@ -2,8 +2,9 @@
 
 namespace DotnetMarketplace.Catalog.Application.Services
 {
-    public interface ICatalogoService : IDisposable
+    public interface ICatalogService : IDisposable
     {
         Task<List<HighlightCategoryViewModel>> GetCategories();
+        Task<List<CategoryItemMenu>> GetCategoriesNavMenu();
     }
 }

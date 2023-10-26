@@ -1,7 +1,6 @@
-﻿using DotnetMarketplace.WebApps.MVC.Models;
+﻿using DotnetMarketplace.Catalog.Application.ViewModels;
 using DotnetMarketPlace.ContentManager.Domain.Repositories;
 using Microsoft.AspNetCore.Mvc;
-using NuGet.Protocol.Core.Types;
 
 namespace DotnetMarketplace.WebApps.MVC.ViewComponents
 {
@@ -21,7 +20,9 @@ namespace DotnetMarketplace.WebApps.MVC.ViewComponents
             var itens = new List<CarouselItemViewModel>();
 
             foreach (var item in carouselItens)
-                itens.Add(new CarouselItemViewModel { File = $"/img/carousel/{item.FileName}" });
+                itens.Add(new CarouselItemViewModel { 
+                    File = $"/img/carousel/{item.FileName}" 
+                });
 
             return View(itens);
         }
