@@ -5,6 +5,6 @@ namespace DotnetMarketplace.Catalog.Domain.Repositories
 {
     public interface IProductRepository : IRepository<Product>
     {
-
+        Task<List<Product>> GetAllOnSale(); 
     }
 }

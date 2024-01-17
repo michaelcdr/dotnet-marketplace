@@ -4,17 +4,16 @@ using DotnetMarketplace.Catalog.Domain.Repositories;
 
 namespace DotnetMarketplace.Catalog.Application.Services
 {
-    public class CatalogoService : ICatalogoService
+    public class CatalogService : ICatalogService
     {
-        public ICategoryRepository _categoryRepository;
-        public CatalogoService(ICategoryRepository categoryRepository)
+        private readonly ICategoryRepository _categoryRepository;
+        private readonly IProductRepository _productRepository;
+
+        public CatalogService(ICategoryRepository categoryRepository,
+                              IProductRepository productRepository)
         {
             _categoryRepository = categoryRepository;
-        }
-
-        public void Dispose()
-        {
- 
+            _productRepository = productRepository;
         }
 
         public async Task<List<HighlightCategoryViewModel>> GetCategories()
@@ -52,6 +51,28 @@ namespace DotnetMarketplace.Catalog.Application.Services
             }
 
             return categoriesViewModel;
+        }
+
+        public async Task<ProductsOnSaleViewModel> GetProductsOnSales()
+        {
+            List<Product> products = await _productRepository.GetAllOnSale();
+
+            return new ProductsOnSaleViewModel
+            {
+                ProductsOnSales = products.Select(e => new ProductOnSaleModel
+                {
+                    ProductId = e.Id.ToString(),
+                    Description = e.Description,
+                    Image = e.Images.First().FileName,
+                    Price = e.Price.ToString("C")
+
+                }).ToList()
+            };
+        }
+
+        public void Dispose()
+        {
+
         }
     }
 }

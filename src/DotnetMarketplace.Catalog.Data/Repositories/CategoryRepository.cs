@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DotnetMarketplace.Catalog.Data.Repositories
 {
-    public class CategoryRepository : ICategoryRepository
+    public class CategoryRepository : ICategoryRepository, IDisposable
     {
         private readonly CatalogContext _db;
         public IUnitOfWork UnitOfWork => _db;
@@ -16,14 +16,14 @@ namespace DotnetMarketplace.Catalog.Data.Repositories
             _db = catalogContext; 
         }
 
-        public void Dispose()
-        {
-            _db.Dispose();
-        }
-
         public async Task<List<Category>> GetCategories()
         {
             return await _db.Categories.AsNoTracking().OrderBy(e => e.Title).ToListAsync();
+        }
+
+        public void Dispose()
+        {
+            _db.Dispose();
         }
     }
 }

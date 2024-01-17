@@ -1,6 +1,8 @@
 ﻿using DotnetMarketplace.Catalog.Data.Data;
+using DotnetMarketplace.Catalog.Domain.Entities;
 using DotnetMarketplace.Catalog.Domain.Repositories;
 using DotnetMarketplace.Core.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace DotnetMarketplace.Catalog.Data.Repositories
 {
@@ -17,6 +19,11 @@ namespace DotnetMarketplace.Catalog.Data.Repositories
         public void Dispose()
         {
             _db.Dispose();
+        }
+
+        public async Task<List<Product>> GetAllOnSale()
+        {
+            return await _db.Products.Where(e => e.OnSale).AsNoTracking().ToListAsync();
         }
     }
 }

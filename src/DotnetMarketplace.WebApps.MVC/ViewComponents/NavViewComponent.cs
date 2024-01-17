@@ -6,8 +6,8 @@ namespace DotnetMarketplace.WebApps.MVC.ViewComponents
 {
     public class NavViewComponent:ViewComponent
     {
-        private readonly ICatalogoService _catalogoService;
-        public NavViewComponent(ICatalogoService catalogoService)
+        private readonly ICatalogService _catalogoService;
+        public NavViewComponent(ICatalogService catalogoService)
         {
             _catalogoService = catalogoService;
         }

@@ -6,5 +6,6 @@ namespace DotnetMarketplace.Catalog.Application.Services
     {
         Task<List<HighlightCategoryViewModel>> GetCategories();
         Task<List<CategoryItemMenu>> GetCategoriesNavMenu();
+        Task<ProductsOnSaleViewModel> GetProductsOnSales();
     }
 }

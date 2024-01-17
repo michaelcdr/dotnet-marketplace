@@ -40,8 +40,21 @@
         public string File { get; set; }
     }
 
-    public class HomeOffersViewModel
+    public class ProductsOnSaleViewModel
     {
+        public List<ProductOnSaleModel> ProductsOnSales { get; set; } = new List<ProductOnSaleModel>();
 
+        /// <summary>
+        /// Product on sale, based on last buyed products.
+        /// </summary>
+        public List<ProductOnSaleModel> ProductsOnSaleBasedOnLastBuyedProducts { get; set; } = new List<ProductOnSaleModel>();
+    }
+
+    public class ProductOnSaleModel
+    {
+        public string ProductId { get; set; } = string.Empty;
+        public string Image { get; set; } = string.Empty;
+        public string Price { get; set; } = string.Empty;
+        public string? Description { get; set; }
     }
 }

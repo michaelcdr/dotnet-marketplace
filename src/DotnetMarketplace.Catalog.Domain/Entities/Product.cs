@@ -11,7 +11,7 @@ namespace DotnetMarketplace.Catalog.Domain.Entities
         public string CreatedBy { get; private set; } = string.Empty;
         public DateTime UpdatedAt { get; private set; }
         public string UpdatedBy { get; private set; } = string.Empty;
-        public bool Offer { get; private set; }
+        public bool OnSale { get; private set; }
         public int Stock { get; private set; }
         public string SKU { get; private set; } = string.Empty;
         public string UserId { get; private set; } = string.Empty;
@@ -27,7 +27,7 @@ namespace DotnetMarketplace.Catalog.Domain.Entities
                        string? description, 
                        decimal price, 
                        string createdBy, 
-                       bool offer, 
+                       bool onSale, 
                        int stock, 
                        string sku, 
                        string userId, 
@@ -38,7 +38,7 @@ namespace DotnetMarketplace.Catalog.Domain.Entities
             Title = title;
             Description = description;
             Price = price;
-            Offer = offer;
+            OnSale = onSale;
             Stock = stock;
             SKU = sku;
             UserId = userId;

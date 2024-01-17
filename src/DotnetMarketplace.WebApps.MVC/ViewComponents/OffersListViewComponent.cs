@@ -1,18 +1,22 @@
-﻿using DotnetMarketplace.Catalog.Application.ViewModels;
+﻿using DotnetMarketplace.Catalog.Application.Services;
+using DotnetMarketplace.Catalog.Application.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DotnetMarketplace.WebApps.MVC.ViewComponents
 {
     public class OffersListViewComponent : ViewComponent
     {
-        public OffersListViewComponent()
+        private readonly ICatalogService _catalogoService;
+
+        public OffersListViewComponent(ICatalogService catalogoService)
         {
-                
+            _catalogoService = catalogoService;
         }
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var model = new HomeOffersViewModel();
+            ProductsOnSaleViewModel model = await _catalogoService.GetProductsOnSales();
+
             return View(model);
         }
     }

@@ -21,6 +21,7 @@ namespace DotnetMarketplace.Sales.Domain.Entities
             CEP = cEP;
             City = city;
             Complement = complement;
+            Itens = new List<OrderItem>();
         }
 
         protected Order() { }
@@ -38,5 +39,13 @@ namespace DotnetMarketplace.Sales.Domain.Entities
         public string CEP { get; private set; } = string.Empty;
         public string City { get; private set; } = string.Empty;
         public string Complement { get; private set; } = string.Empty;
+        public List<OrderItem> Itens { get; private set; } = new List<OrderItem>();
+    }
+
+    public class OrderItem : Entity
+    {
+        public int OrderId { get; private set; }
+        public Order? Order { get; set; }
+        public int Qtd { get; private set; }
     }
 }
