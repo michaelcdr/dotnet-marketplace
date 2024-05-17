@@ -7,11 +7,11 @@ namespace DotnetMarketplace.Catalog.Domain.Entities
         protected ProductComment() { }
 
         public ProductComment(Guid productId, 
-                                Product product, 
-                                string title, 
-                                string description, 
-                                bool recommend, 
-                                string ratting)
+                              Product product, 
+                              string title, 
+                              string description, 
+                              bool recommend, 
+                              string ratting)
         { 
             ProductId = productId;
             Product = product;
