@@ -12,7 +12,7 @@ namespace DotnetMarketplace.Catalog.Domain.Tests
         {
             Assert.Throws<DomainException>(
                 () => {
-                    var p = new Category(titulo, imagem);
+                    var category = new Category(titulo, imagem);
                 }
             );
         }

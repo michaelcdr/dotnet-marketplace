@@ -1,16 +1,10 @@
-using DotnetMarketplace.Catalog.Application.Services;
 using DotnetMarketplace.Catalog.Data.Data;
-using DotnetMarketplace.Catalog.Data.Repositories;
-using DotnetMarketplace.Catalog.Domain.Repositories;
 using DotnetMarketplace.WebApps.MVC.Configuration;
 using DotnetMarketPlace.ContentManager.Data.Data;
-using DotnetMarketPlace.ContentManager.Data.Repositories;
-using DotnetMarketPlace.ContentManager.Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<ContentManagerContext>(options =>
@@ -19,12 +13,9 @@ builder.Services.AddDbContext<ContentManagerContext>(options =>
 builder.Services.AddDbContext<CatalogContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddSingleton<DapperContext>();
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<Program>());
 
-builder.Services.AddScoped<ICarouselRepository, CarouselRepository>();
-builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
-builder.Services.AddScoped<IProductRepository, ProductRepository>();
-builder.Services.AddScoped<ICatalogService, CatalogService>();
+builder.Services.RegisterServices();
 
 var app = builder.Build();
 

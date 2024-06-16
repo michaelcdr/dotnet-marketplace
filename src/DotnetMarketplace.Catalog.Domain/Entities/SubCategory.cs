@@ -2,7 +2,7 @@
 
 namespace DotnetMarketplace.Catalog.Domain.Entities
 {
-    public class SubCategory: Entity
+    public class SubCategory : Entity
     {
         public Guid CategoryId { get; private set; } = Guid.Empty;
         public Category? Category { get; set; }

@@ -34,6 +34,7 @@ namespace DotnetMarketplace.Catalog.Domain.Entities
 
             if (string.IsNullOrEmpty(Image)) throw new DomainException("Informe a imagem");
         }
+
         public override string ToString() { return $"ID: {this.Id}, {Title}"; }
     }
 }
