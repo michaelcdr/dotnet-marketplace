@@ -1,0 +1,6 @@
+@DotnetMarketplace.Auth.API_HostAddress = http://localhost:5057
+
+GET {{DotnetMarketplace.Auth.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

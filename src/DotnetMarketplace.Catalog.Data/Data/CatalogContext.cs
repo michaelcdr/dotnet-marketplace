@@ -19,15 +19,17 @@ namespace DotnetMarketplace.Catalog.Data.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            var itens = modelBuilder.Model.GetEntityTypes()
-                .SelectMany(e => e.GetProperties().Where(p => p.ClrType == typeof(string)));
+            var entityTypes = modelBuilder.Model.GetEntityTypes().ToList();
 
-            foreach (var property in itens)
+            foreach (var entityType in entityTypes)
             {
-                property.SetMaxLength(100);
-                property.SetColumnType("varchar(100)");
-            }
+                var properties = entityType.GetProperties().Where(p => p.ClrType == typeof(string));
 
+                foreach (var property in properties)
+                {
+                    modelBuilder.Entity(entityType.Name).Property(property.Name).HasMaxLength(100).HasColumnType("varchar(100)");
+                }
+            }
             modelBuilder.Ignore<Event>();
 
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(CatalogContext).Assembly);
