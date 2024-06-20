@@ -19,15 +19,15 @@ namespace DotnetMarketPlace.ContentManager.Data.Data
         {
             var entityTypes = modelBuilder.Model.GetEntityTypes().ToList();
 
-            foreach (var entityType in entityTypes)
-            {
-                var properties = entityType.GetProperties().Where(p => p.ClrType == typeof(string));
+            //foreach (var entityType in entityTypes)
+            //{
+            //    var properties = entityType.GetProperties().Where(p => p.ClrType == typeof(string));
 
-                foreach (var property in properties)
-                {
-                    modelBuilder.Entity(entityType.Name).Property(property.Name).HasMaxLength(100).HasColumnType("varchar(100)");
-                }
-            }
+            //    foreach (var property in properties)
+            //    {
+            //        modelBuilder.Entity(entityType.Name).Property(property.Name).HasMaxLength(100).HasColumnType("varchar(100)");
+            //    }
+            //}
 
             modelBuilder.Ignore<Event>(); 
 
