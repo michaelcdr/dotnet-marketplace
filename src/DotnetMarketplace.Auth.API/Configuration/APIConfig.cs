@@ -1,25 +1,44 @@
-﻿namespace DotnetMarketplace.Auth.API.Configuration
+﻿using Microsoft.Extensions.Configuration.UserSecrets;
+
+namespace DotnetMarketplace.Auth.API.Configuration
 {
     public static class APIConfig
     {
-        public static void ApplyAPIConfig(this IServiceCollection services)
+        public static IServiceCollection AddAPIConfig(this IServiceCollection services,                                             
+                                                      ConfigurationManager configuration,
+                                                      IWebHostEnvironment environment)
         {
-            services.AddControllers();
-        }
+            configuration
+                .SetBasePath(environment.ContentRootPath)
+                .AddJsonFile("appsettings.json", true, true)
+                .AddJsonFile($"appsettings.{environment.EnvironmentName}.json", true, true)
+                .AddEnvironmentVariables();
 
-        public static void UseAPIConfig(this WebApplication app)
-        {
-            if (app.Environment.IsDevelopment())
+            if (environment.IsDevelopment())
             {
-                app.UseSwagger();
-                app.UseSwaggerUI();
+                configuration.AddUserSecrets<Program>();
             }
 
-            app.UseHttpsRedirection();
-            app.UseAuthentication();
-            app.UseAuthorization();
+            services.AddControllers();
+            services.AddEndpointsApiExplorer();
 
-            app.MapControllers();
+            return services;
+        }
+
+        public static IApplicationBuilder UseAPIConfig(this IApplicationBuilder app, IWebHostEnvironment hostEnvironment)
+        {
+            app.UseHttpsRedirection();
+
+            app.UseRouting();
+
+            app.UseIdentity();
+
+            app.UseEndpoints(endpo =>
+            {
+                endpo.MapControllers();
+            });
+
+            return app;
         }
 
     }

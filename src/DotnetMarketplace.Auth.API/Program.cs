@@ -1,15 +1,13 @@
 using DotnetMarketplace.Auth.API.Configuration;
-using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.ApplyAPIConfig();
-builder.Services.ApplyIdentityConfig(builder.Configuration?.GetConnectionString("DefaultConnection"));
-builder.Services.AddControllers();
+ 
+builder.Services.AddIdentityConfig(builder.Configuration);
+builder.Services.AddAPIConfig(builder.Configuration, builder.Environment);
 
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerConfig();
 
 var app = builder.Build();
-app.UseAPIConfig();
-
+app.UseAPIConfig(app.Environment);
+app.UseSwaggerConfig(app.Environment);
 app.Run();
