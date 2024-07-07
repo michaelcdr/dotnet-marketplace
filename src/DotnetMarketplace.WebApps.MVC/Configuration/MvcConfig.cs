@@ -1,30 +1,41 @@
-﻿namespace DotnetMarketplace.WebApps.MVC.Configuration
+﻿using DotnetMarketplace.Catalog.Data.Data;
+using DotnetMarketPlace.ContentManager.Data.Data;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+
+namespace DotnetMarketplace.WebApps.MVC.Configuration;
+
+public static class MvcConfig
 {
-    public static class MvcConfig
+    public static IServiceCollection AddMvcConfig(this IServiceCollection services, IConfiguration configuration)
     {
-        public static void AddMvcConfig(this IServiceCollection services)
+        services.AddControllersWithViews(options =>
         {
-            services.AddControllersWithViews();
+            options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
+        });
+
+        string connStr = configuration?.GetConnectionString("DefaultConnection") ?? string.Empty;
+        services.AddDbContext<ContentManagerContext>(options => options.UseSqlServer(connStr));
+        services.AddDbContext<CatalogContext>(options => options.UseSqlServer(connStr));
+        return services;
+    }
+
+    public static void UseMvcConfig(this WebApplication app)
+    {
+        if (!app.Environment.IsDevelopment())
+        {
+            app.UseExceptionHandler("/Home/Error");
+            app.UseHsts();
         }
 
-        public static void UseMvcConfig(this WebApplication app)
-        {
-            if (!app.Environment.IsDevelopment())
-            {
-                app.UseExceptionHandler("/Home/Error");
-                app.UseHsts();
-            }
+        app.UseCultureInfoConfigurations();
+        app.UseRouting();
+        app.UseHttpsRedirection();
+        app.UseStaticFiles();
+        app.UseIdentityConfigs();
 
-            app.UseCultureInfoConfigurations();
-            app.UseRouting();
-            app.UseHttpsRedirection();
-            app.UseStaticFiles();
-            app.UseIdentityConfigs();
-
-            app.MapControllerRoute(
-                name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
-
-        }
+        app.MapControllerRoute(
+            name: "default",
+            pattern: "{controller=Home}/{action=Index}/{id?}");
     }
 }

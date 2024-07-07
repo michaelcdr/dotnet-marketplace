@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.Configuration.UserSecrets;
-
-namespace DotnetMarketplace.Auth.API.Configuration
+﻿namespace DotnetMarketplace.Auth.API.Configuration
 {
     public static class APIConfig
     {

@@ -4,7 +4,7 @@ var builder = WebApplication.CreateBuilder(args);
  
 builder.Services.AddIdentityConfig(builder.Configuration);
 builder.Services.AddAPIConfig(builder.Configuration, builder.Environment);
-
+builder.Services.AddServicesConfig();
 builder.Services.AddSwaggerConfig();
 
 var app = builder.Build();

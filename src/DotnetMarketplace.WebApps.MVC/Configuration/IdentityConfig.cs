@@ -4,7 +4,7 @@ namespace DotnetMarketplace.WebApps.MVC.Configuration
 {
     public static class IdentityConfig
     {
-        public static void AddIdentityConfigs(this IServiceCollection services)
+        public static IServiceCollection AddIdentityConfigs(this IServiceCollection services)
         {
             services
                 .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
@@ -20,12 +20,15 @@ namespace DotnetMarketplace.WebApps.MVC.Configuration
                         OnValidatePrincipal = async context => { await Task.CompletedTask; }
                     };
                 });
+            return services;
         }
 
-        public static void UseIdentityConfigs(this WebApplication app)
+        public static WebApplication UseIdentityConfigs(this WebApplication app)
         {
             app.UseAuthentication();
             app.UseAuthorization();
+
+            return app;
         }
     }
 }

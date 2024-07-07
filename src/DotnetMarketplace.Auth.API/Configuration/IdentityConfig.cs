@@ -1,4 +1,5 @@
 ﻿using DotnetMarketplace.Auth.API.Data;
+using DotnetMarketplace.Auth.API.Jwt;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -13,36 +14,13 @@ namespace DotnetMarketplace.Auth.API.Configuration
         {
             services.AddDbContext<ApplicationDbContext>(opt => opt.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddDefaultIdentity<IdentityUser>()
-                .AddRoles<IdentityRole>()
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                //.AddRoles<IdentityRole>()
                 //.AddErrorDescriber<IdentityErrosEmPortugues>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
-            // Configurando JWT
-            string jwtSecret = configuration["JwtSecret"] ?? string.Empty;
-
-            var key = Encoding.ASCII.GetBytes(jwtSecret);
-
-            services.AddAuthentication(opt =>
-            {
-                opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-                opt.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-
-            }).AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, opt => {
-
-                opt.SaveToken = true;
-                opt.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(key),
-                    ValidateIssuer = false,
-                    ValidateAudience = false,
-                    ValidateLifetime = true,
-                    RequireExpirationTime = false
-                };
-            });
+            AddJWTConfiguration(services, configuration);
 
             // definições de regras de segurança para a password
             services.Configure<IdentityOptions>(opt =>
@@ -62,7 +40,65 @@ namespace DotnetMarketplace.Auth.API.Configuration
         {
             app.UseAuthentication();
             app.UseAuthorization();
+
+            using (var scope = app.ApplicationServices.CreateScope())
+            {
+                var db = scope.ServiceProvider.GetService<ApplicationDbContext>();
+
+                if (!db.Roles.Any(r => r.Name == "admin"))
+                {
+                    db.Roles.Add(new IdentityRole("admin"));
+                    db.SaveChanges();
+                }
+
+                if (!db.Roles.Any(r => r.Name == "comum"))
+                {
+                    db.Roles.Add(new IdentityRole("comum"));
+                    db.SaveChanges();
+                }
+
+                if (!db.Roles.Any(r => r.Name == "vendedor"))
+                {
+                    db.Roles.Add(new IdentityRole("vendedor"));
+                    db.SaveChanges();
+                }
+            }
+
             return app;
+        }
+
+        private static void AddJWTConfiguration(IServiceCollection services, IConfiguration configuration)
+        {
+            // Configurando JWT
+            var appSettingsSection = configuration.GetSection("AppSettings");
+            services.Configure<JwtAppSettings>(appSettingsSection);
+
+            var appSettings = appSettingsSection.Get<JwtAppSettings>();
+            var key = Encoding.ASCII.GetBytes(appSettings?.Secret ?? string.Empty);
+
+            services.AddAuthentication(opt =>
+            {
+                opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                opt.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+
+            }).AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, bearerOpts =>
+            {
+
+                bearerOpts.RequireHttpsMetadata = true;
+                bearerOpts.SaveToken = true;
+                bearerOpts.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    RequireExpirationTime = false,
+                    ValidAudience = appSettings?.Audience,
+                    ValidIssuer = appSettings?.Issuer
+                };
+            });
         }
     }
 }

@@ -9,10 +9,6 @@ namespace DotnetMarketplace.Auth.API.Data
         {
 
         }
-
-        protected override void OnModelCreating(ModelBuilder builder)
-        {
-             
-        }
+         
     }
 }
