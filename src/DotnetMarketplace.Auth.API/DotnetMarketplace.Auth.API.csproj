@@ -31,8 +31,4 @@
     <ProjectReference Include="..\DotnetMarketplace.Domain\DotnetMarketplace.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Extensions\" />
-  </ItemGroup>
-
 </Project>

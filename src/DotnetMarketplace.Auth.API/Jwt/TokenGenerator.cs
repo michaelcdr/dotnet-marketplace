@@ -41,9 +41,33 @@ namespace DotnetMarketplace.Auth.API.Jwt
                 _logger.LogWarning($"O usuario {userName} não contem roles.");
                 return null;
             }
-             
+
             var claimsIdentity = new ClaimsIdentity(await GetClaims(identityUser, userRoles));
 
+            string encondedToken = CreateEncondedToken(claimsIdentity);
+
+            var response = new TokenGeneratedResponse
+            {
+                AccessToken = encondedToken,
+                ExpiresIn = TimeSpan.FromHours(_jwtConfig.ExpiresIn).TotalSeconds,
+                UserToken = new UserToken
+                {
+                    Id = identityUser.Id,
+                    Email = identityUser.Email,
+                    UserName = identityUser.UserName,
+                    Claims = claimsIdentity.Claims.Select(c => new UserClaim
+                    {
+                        Type = c.Type,
+                        Value = c.Value
+                    }).ToList(),
+                }
+            };
+
+            return response;
+        }
+
+        private string CreateEncondedToken(ClaimsIdentity claimsIdentity)
+        {
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Issuer = _jwtConfig.Issuer,
@@ -61,25 +85,7 @@ namespace DotnetMarketplace.Auth.API.Jwt
             SecurityToken token = tokenHandler.CreateToken(tokenDescriptor);
 
             string encondedToken = tokenHandler.WriteToken(token);
-
-            var response = new TokenGeneratedResponse
-            {
-                AccessToken = encondedToken,
-                ExpiresIn = TimeSpan.FromHours(_jwtConfig.ExpiresIn).TotalSeconds,
-                UserToken = new UserToken
-                {
-                    Id = identityUser.Id,
-                    Email = identityUser.Email,
-                    UserName = identityUser.UserName,
-                    Claims = claimsIdentity.Claims.Select(c => new UserClaim
-                    {
-                         Type = c.Type,
-                         Value = c.Value
-                    }).ToList(),
-                }
-            };
-
-            return response;
+            return encondedToken;
         }
 
         private async Task<IList<Claim>> GetClaims(IdentityUser identityUser, IList<string> userRoles)
