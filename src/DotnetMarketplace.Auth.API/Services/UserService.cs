@@ -35,16 +35,29 @@ namespace DotnetMarketplace.Auth.API.Services
 
             IdentityResult result = await _userManager.CreateAsync(usuario, request.Password);
 
-            if (!result.Succeeded) return new AppResponse<object>(false, MSG_ERRO);
+            if (!result.Succeeded)
+            {
+                var notifications = new List<Notification>();
+
+                foreach (var item in result.Errors)
+                    notifications.Add(new Notification(item.Description, string.Empty));
+                
+                return new AppResponse<object>(false, MSG_ERRO, notifications);
+            }
 
             try
             {
                 IdentityResult resultRole = await _userManager.AddToRoleAsync(usuario, ROLE_COMUM);
 
                 if (!resultRole.Succeeded) 
-                { 
+                {
+                    var notifications = new List<Notification>();
+
+                    foreach (var item in result.Errors)
+                        notifications.Add(new Notification(item.Description, string.Empty));
+
                     await _userManager.DeleteAsync(usuario);
-                    return new AppResponse<object>(false, MSG_ERRO); 
+                    return new AppResponse<object>(false, MSG_ERRO, notifications); 
                 }
             }
             catch (Exception)
@@ -54,7 +67,7 @@ namespace DotnetMarketplace.Auth.API.Services
             
             TokenGeneratedResponse? tokenResultado = await _tokenGenerator.Generate(request.UserName);
 
-            if (tokenResultado == null) new AppResponse<object>(false, "Usuário registrado mas, não foi possivel gerar o token.");
+            if (tokenResultado == null) return new AppResponse<object>(false, "Usuário registrado mas, não foi possivel gerar o token.");
 
             return new AppResponse<object>(true, MSG_SUCESSO) 
             {
@@ -66,11 +79,17 @@ namespace DotnetMarketplace.Auth.API.Services
         {
             var result = await _signInManager.PasswordSignInAsync(request.UserName, request.Password, false, true);
 
-            if (!result.Succeeded) new AppResponse<object>(false, "Não foi possivel logar.");
+            if (!result.Succeeded) 
+                return new AppResponse<object>(false, "Não foi possivel logar.", new List<Notification> { 
+                    new Notification("Não foi possivel logar.","") 
+                });
 
             TokenGeneratedResponse? tokenResultado = await _tokenGenerator.Generate(request.UserName);
 
-            if (tokenResultado == null) new AppResponse<object>(false, "Não foi possivel logar.");
+            if (tokenResultado == null)
+                return new AppResponse<object>(false, "Não foi possivel logar.", new List<Notification> {
+                    new Notification("Não foi possivel logar.","")
+                });
 
             return new AppResponse<object>(true, "Logado com sucesso.") 
             {

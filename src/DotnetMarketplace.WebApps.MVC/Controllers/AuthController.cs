@@ -1,4 +1,5 @@
 ﻿using DotnetMarketplace.WebApps.MVC.Models;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -16,6 +17,28 @@ namespace DotnetMarketplace.WebApps.MVC.Controllers
         public IActionResult Index()
         {
             return View();
+        }
+
+        [Route("minha-conta/entrar")]
+        public IActionResult Login()
+        {
+            return View();
+        }
+        
+        [HttpPost]
+        public IActionResult Login(LoginModel model)
+        {
+            if (!ModelState.IsValid) return View(model);
+
+
+
+            return RedirectToAction("Index", "Home");
+        }
+
+        public async Task<IActionResult> Sair()
+        {
+            await HttpContext.SignOutAsync();
+            return RedirectToAction("Index", "Home");
         }
 
         public IActionResult Privacy()

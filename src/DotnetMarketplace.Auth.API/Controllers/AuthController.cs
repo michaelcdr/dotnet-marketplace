@@ -1,12 +1,12 @@
 using DotnetMarketplace.Auth.API.Models;
 using DotnetMarketplace.Auth.API.Services;
+using DotnetMarketplace.Core.Controllers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DotnetMarketplace.Auth.API.Controllers;
 
-[ApiController]
 [Route("api/conta")]
-public class AuthController : ControllerBase
+public class AuthController : MainController
 {
     private readonly IUserService _userService;
 
@@ -21,15 +21,21 @@ public class AuthController : ControllerBase
     /// <param name="model"></param>
     /// <returns></returns>
     [HttpPost("logar")]
-    public async Task<IActionResult> Logar(UserLogin model)
+    public async Task<IActionResult> Login(UserLogin model)
     {
-        if (!ModelState.IsValid) return BadRequest();
+        if (!ModelState.IsValid) return CustomResponse(ModelState);
 
         var response = await _userService.Login(model);
 
-        if (!response.Success) return BadRequest(response);
+        if (!response.Success) 
+        {
+            foreach (var item in response.Errors)
+                AddError(item.Message);
 
-        return Ok(response);
+            return CustomResponse();
+        }
+
+        return CustomResponse(response);
     }
 
     /// <summary>
@@ -38,14 +44,20 @@ public class AuthController : ControllerBase
     /// <param name="model"></param>
     /// <returns></returns>
     [HttpPost("registrar")]
-    public async Task<IActionResult> Registrar(UserRegister model)
+    public async Task<IActionResult> Register(UserRegister model)
     {
-        if (!ModelState.IsValid) return BadRequest();
+        if (!ModelState.IsValid) return CustomResponse(ModelState);
 
         var response = await _userService.Register(model);
 
-        if (!response.Success) return BadRequest(response);
+        if (!response.Success)
+        {
+            foreach (var item in response.Errors)
+                AddError(item.Message);
 
-        return Ok(response);
+            return CustomResponse();
+        }
+
+        return CustomResponse(response);
     }
 }
