@@ -7,7 +7,7 @@ using DotnetMarketPlace.ContentManager.Domain.Repositories;
 
 namespace DotnetMarketplace.WebApps.MVC.Configuration;
 
-public static class DependencyInjection
+public static class DependencyInjectionConfig
 {
     public static IServiceCollection RegisterServices(this IServiceCollection services)
     {

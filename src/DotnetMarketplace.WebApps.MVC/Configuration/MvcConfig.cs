@@ -28,11 +28,11 @@ public static class MvcConfig
             app.UseHsts();
         }
 
-        app.UseCultureInfoConfigurations();
-        app.UseRouting();
-        app.UseHttpsRedirection();
-        app.UseStaticFiles();
-        app.UseIdentityConfigs();
+        app.UseCultureInfoConfigurations()
+           .UseRouting()
+           .UseHttpsRedirection()
+           .UseStaticFiles()
+           .UseIdentityConfigs();
 
         app.MapControllerRoute(
             name: "default",

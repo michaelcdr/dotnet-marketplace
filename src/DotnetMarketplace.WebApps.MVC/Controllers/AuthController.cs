@@ -1,4 +1,5 @@
 ﻿using DotnetMarketplace.WebApps.MVC.Models;
+using DotnetMarketplace.WebApps.MVC.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -8,10 +9,13 @@ namespace DotnetMarketplace.WebApps.MVC.Controllers
     public class AuthController : Controller
     {
         private readonly ILogger<AuthController> _logger;
+        private readonly IAuthService _authService;
 
-        public AuthController(ILogger<AuthController> logger)
+        public AuthController(ILogger<AuthController> logger,
+                              IAuthService authService)
         {
             _logger = logger;
+            _authService = authService;
         }
 
         public IActionResult Index()
@@ -26,11 +30,12 @@ namespace DotnetMarketplace.WebApps.MVC.Controllers
         }
         
         [HttpPost]
-        public IActionResult Login(LoginModel model)
+        [Route("minha-conta/entrar")]
+        public async Task<IActionResult> Login(LoginModel model)
         {
             if (!ModelState.IsValid) return View(model);
 
-
+            await _authService.Login(model);
 
             return RedirectToAction("Index", "Home");
         }

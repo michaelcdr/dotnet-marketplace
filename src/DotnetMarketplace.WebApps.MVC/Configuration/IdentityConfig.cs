@@ -10,20 +10,20 @@ namespace DotnetMarketplace.WebApps.MVC.Configuration
                 .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options =>
                 {
-                    options.Cookie.Name = "TrocaLivro";
-                    options.LoginPath = "/Usuario/Login";
+                    options.Cookie.Name = "marketplace";
+                    options.LoginPath = "/minha-conta/entrar";
                     options.AccessDeniedPath = "/acesso-negado";
-                    options.Events = new CookieAuthenticationEvents
-                    {
-                        OnSignedIn = async context => { await Task.CompletedTask; },
-                        OnSigningIn = async context => { await Task.CompletedTask; },
-                        OnValidatePrincipal = async context => { await Task.CompletedTask; }
-                    };
+                    //options.Events = new CookieAuthenticationEvents
+                    //{
+                    //    OnSignedIn = async context => { await Task.CompletedTask; },
+                    //    OnSigningIn = async context => { await Task.CompletedTask; },
+                    //    OnValidatePrincipal = async context => { await Task.CompletedTask; }
+                    //};
                 });
             return services;
         }
 
-        public static WebApplication UseIdentityConfigs(this WebApplication app)
+        public static IApplicationBuilder UseIdentityConfigs(this IApplicationBuilder app)
         {
             app.UseAuthentication();
             app.UseAuthorization();

@@ -5,7 +5,7 @@ namespace DotnetMarketplace.WebApps.MVC.Configuration
 {
     public static class CultureConfigExtensions
     {
-        public static WebApplication UseCultureInfoConfigurations(this WebApplication app)
+        public static IApplicationBuilder UseCultureInfoConfigurations(this IApplicationBuilder app)
         {
             var defaultCulture = new CultureInfo("pt-BR");
 

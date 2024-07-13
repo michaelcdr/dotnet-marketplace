@@ -1,8 +1,28 @@
 ﻿@if (Context.User.Identity.IsAuthenticated)
 {
-
+    <span class="login-nav text-light">
+        <i class="fa fa-user"></i>
+        Olá,
+        <a href="@Model.UrlPerfil" class="a-primary">
+            @Model.Usuario
+        </a> clique em
+        <a href="/logout" class="a-primary" title="Sair no sistema" data-container="body"
+           data-toggle="tooltip" data-placement="body">
+            Sair
+        </a> para fazer seu logout.
+    </span>
 }
 else
 {
-    
+    <span class="login-nav text-light">
+        <i class="fa fa-user"></i> Olá, Faça seu
+        <a asp-action="Login" asp-controller="Auth" class="a-primary" data-container="body" title="Entrar no sistema"
+           data-toggle="tooltip" data-placement="body">
+            Login
+        </a>
+        <br /> ou
+        <a href="/registrar" class="a-primary" title="Entrar no sistema" data-container="body">
+            Cadastre-se
+        </a>.
+    </span>
 }
