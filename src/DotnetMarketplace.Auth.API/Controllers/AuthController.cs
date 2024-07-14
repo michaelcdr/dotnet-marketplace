@@ -1,12 +1,14 @@
+using DotnetMarketplace.Auth.API.Jwt;
 using DotnetMarketplace.Auth.API.Models;
 using DotnetMarketplace.Auth.API.Services;
 using DotnetMarketplace.Core.Controllers;
+using DotnetMarketplace.Core.Responses;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DotnetMarketplace.Auth.API.Controllers;
 
 [Route("api/conta")]
-public class AuthController : MainController
+public class AuthController : MainApiController
 {
     private readonly IUserService _userService;
 
@@ -20,12 +22,12 @@ public class AuthController : MainController
     /// </summary>
     /// <param name="model"></param>
     /// <returns></returns>
-    [HttpPost("logar")]
+    [HttpPost("login")]
     public async Task<IActionResult> Login(UserLogin model)
     {
         if (!ModelState.IsValid) return CustomResponse(ModelState);
 
-        var response = await _userService.Login(model);
+        AppResponse<TokenGeneratedResponse> response = await _userService.Login(model);
 
         if (!response.Success) 
         {
@@ -43,12 +45,12 @@ public class AuthController : MainController
     /// </summary>
     /// <param name="model"></param>
     /// <returns></returns>
-    [HttpPost("registrar")]
+    [HttpPost("registro")]
     public async Task<IActionResult> Register(UserRegister model)
     {
         if (!ModelState.IsValid) return CustomResponse(ModelState);
 
-        var response = await _userService.Register(model);
+        AppResponse<TokenGeneratedResponse> response = await _userService.Register(model);
 
         if (!response.Success)
         {

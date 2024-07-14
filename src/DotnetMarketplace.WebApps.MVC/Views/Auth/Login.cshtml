@@ -1,4 +1,4 @@
-﻿@model LoginModel
+﻿@model UserLogin
 
 @{
     ViewData["Title"] = "Loja Whatever - Sua loja de instrumentos músicais e acessórios";
@@ -13,8 +13,8 @@
                     <h1 class="h4 mb-3 font-weight-normal text-center ">
                         Olá! Para continuar, digite o seu login e senha
                     </h1>
-                    <label for="login" class="sr-only">Login</label>
-                    <input type="login" asp-for="Login" class="form-control" placeholder="Informe seu login" autofocus="">
+                    <label for="UserName" class="sr-only">Login</label>
+                    <input type="login" asp-for="UserName" class="form-control" placeholder="Informe seu login" autofocus="">
 
                     <label for="password" class="sr-only">Password</label>
                     <input type="password" asp-for="Password" class="form-control" placeholder="Informe sua senha" >

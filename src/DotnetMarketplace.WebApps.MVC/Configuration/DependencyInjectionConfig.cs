@@ -2,6 +2,7 @@
 using DotnetMarketplace.Catalog.Data.Repositories;
 using DotnetMarketplace.Catalog.Domain.Repositories;
 using DotnetMarketplace.Core.Bus;
+using DotnetMarketplace.WebApps.MVC.Services;
 using DotnetMarketPlace.ContentManager.Data.Repositories;
 using DotnetMarketPlace.ContentManager.Domain.Repositories;
 
@@ -12,8 +13,11 @@ public static class DependencyInjectionConfig
     public static IServiceCollection RegisterServices(this IServiceCollection services)
     {
         services.AddSingleton<DapperContext>();
+        services.AddHttpContextAccessor();
 
         services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<Program>());
+
+        services.AddHttpClient<IAuthService,AuthService>();
 
         services.AddScoped<IMediatrHandler, MediatrHandler>();
         services.AddScoped<ICarouselRepository, CarouselRepository>();
