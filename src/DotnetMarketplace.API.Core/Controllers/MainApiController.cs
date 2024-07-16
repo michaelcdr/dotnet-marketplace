@@ -5,33 +5,30 @@ namespace DotnetMarketplace.Core.Controllers;
 [ApiController]
 public abstract class MainApiController : ControllerBase
 {
-    protected ICollection<string> Erros = [];
+    protected ICollection<string> Errors = [];
 
     protected ActionResult CustomResponse(object? result = null)
     {
-        if (OperationIsValid())
-        {
-            return Ok(result);
-        }
+        if (OperationIsValid())  return Ok(result);
 
         return BadRequest(new ValidationProblemDetails(new Dictionary<string, string[]>
         {
-            { "Mensagens", Erros.ToArray() }
+            { "Mensagens", Errors.ToArray() }
         }));
     }
     
     protected bool OperationIsValid() 
     {
-        return !Erros.Any();
+        return !Errors.Any();
     }
 
     protected void AddError(string err)
     {
-        Erros.Add(err);
+        Errors.Add(err);
     }
 
     protected void CleanErrors()
     {
-        Erros.Clear();
+        Errors.Clear();
     }
 }

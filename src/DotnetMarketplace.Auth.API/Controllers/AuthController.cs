@@ -54,8 +54,8 @@ public class AuthController : MainApiController
 
         if (!response.Success)
         {
-            foreach (var item in response.Errors)
-                AddError(item.Message);
+            foreach (Notification notification in response.Errors)
+                AddError(notification.Message);
 
             return CustomResponse();
         }
