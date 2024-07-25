@@ -13,6 +13,7 @@ public abstract class MainApiController : ControllerBase
 
         return BadRequest(new ValidationProblemDetails(new Dictionary<string, string[]>
         {
+
             { "Mensagens", Errors.ToArray() }
         }));
     }
