@@ -37,9 +37,12 @@ public class AuthService : IAuthService
 
         string retorno = await response.Content.ReadAsStringAsync();
 
-        var result = JsonSerializer.Deserialize<AppResponse<TokenGeneratedResponse>>(retorno, opts);
+        if (!response.IsSuccessStatusCode)
+        {
+            return new AppResponse<TokenGeneratedResponse>(false, "erro");
+        }
 
-        if (result == null || result.Data == null) return new AppResponse<TokenGeneratedResponse>(false, "erro");
+        var result = JsonSerializer.Deserialize<AppResponse<TokenGeneratedResponse>>(retorno, opts);
 
         await AutenticarRegistrandoClaimns(result.Data);
 

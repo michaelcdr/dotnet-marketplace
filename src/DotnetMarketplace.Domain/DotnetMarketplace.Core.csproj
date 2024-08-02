@@ -11,6 +11,7 @@
     <Folder Include="Messages\CommonMessages\DomainEvents\" />
     <Folder Include="Messages\CommonMessages\IntegrationEvents\" />
     <Folder Include="Messages\CommonMessages\Notifications\" />
+    <Folder Include="Responses\" />
   </ItemGroup>
 
   <ItemGroup>
