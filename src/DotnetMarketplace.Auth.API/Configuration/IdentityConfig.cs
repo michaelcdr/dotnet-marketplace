@@ -6,99 +6,103 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
-namespace DotnetMarketplace.Auth.API.Configuration
+namespace DotnetMarketplace.Auth.API.Configuration;
+
+public static class IdentityConfig
 {
-    public static class IdentityConfig
+    public static IServiceCollection AddIdentityConfig(this IServiceCollection services, IConfiguration configuration)
     {
-        public static IServiceCollection AddIdentityConfig(this IServiceCollection services, IConfiguration configuration)
+        services.AddDbContext<ApplicationDbContext>(opt => opt.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+
+        services.AddIdentity<IdentityUser, IdentityRole>()
+            //.AddRoles<IdentityRole>()
+            //.AddErrorDescriber<IdentityErrosEmPortugues>()
+            .AddEntityFrameworkStores<ApplicationDbContext>()
+            .AddDefaultTokenProviders();
+
+        AddJWTConfiguration(services, configuration);
+
+        // definições de regras de segurança para a password
+        services.Configure<IdentityOptions>(opt =>
         {
-            services.AddDbContext<ApplicationDbContext>(opt => opt.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+            opt.Password.RequireDigit = false;
+            opt.Password.RequiredLength = 3;
+            opt.Password.RequireNonAlphanumeric = false;
+            opt.Password.RequireUppercase = false;
+            opt.Password.RequireLowercase = false;
+            opt.Password.RequiredUniqueChars = 0;
+            opt.User.RequireUniqueEmail = false;
+        });
+        return services;
+    }
 
-            services.AddIdentity<IdentityUser, IdentityRole>()
-                //.AddRoles<IdentityRole>()
-                //.AddErrorDescriber<IdentityErrosEmPortugues>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultTokenProviders();
+    public static IApplicationBuilder UseIdentity(this IApplicationBuilder app)
+    {
+        app.UseAuthentication();
+        app.UseAuthorization();
 
-            AddJWTConfiguration(services, configuration);
+        SeedIdentityConfigs(app);
 
-            // definições de regras de segurança para a password
-            services.Configure<IdentityOptions>(opt =>
-            {
-                opt.Password.RequireDigit = false;
-                opt.Password.RequiredLength = 3;
-                opt.Password.RequireNonAlphanumeric = false;
-                opt.Password.RequireUppercase = false;
-                opt.Password.RequireLowercase = false;
-                opt.Password.RequiredUniqueChars = 0;
-                opt.User.RequireUniqueEmail = false;
-            });
-            return services;
-        }
+        return app;
+    }
 
-        public static IApplicationBuilder UseIdentity(this IApplicationBuilder app)
+    private static void SeedIdentityConfigs(IApplicationBuilder app)
+    {
+        using (var scope = app.ApplicationServices.CreateScope())
         {
-            app.UseAuthentication();
-            app.UseAuthorization();
+            var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
 
-            using (var scope = app.ApplicationServices.CreateScope())
+            if (!db.Roles.Any(r => r.Name == "admin"))
             {
-                var db = scope.ServiceProvider.GetService<ApplicationDbContext>();
-
-                if (!db.Roles.Any(r => r.Name == "admin"))
-                {
-                    db.Roles.Add(new IdentityRole("admin"));
-                    db.SaveChanges();
-                }
-
-                if (!db.Roles.Any(r => r.Name == "comum"))
-                {
-                    db.Roles.Add(new IdentityRole("comum"));
-                    db.SaveChanges();
-                }
-
-                if (!db.Roles.Any(r => r.Name == "vendedor"))
-                {
-                    db.Roles.Add(new IdentityRole("vendedor"));
-                    db.SaveChanges();
-                }
+                db.Roles.Add(new IdentityRole("admin"));
+                db.SaveChanges();
             }
 
-            return app;
-        }
+            if (!db.Roles.Any(r => r.Name == "comum"))
+            {
+                db.Roles.Add(new IdentityRole("comum"));
+                db.SaveChanges();
+            }
 
-        private static void AddJWTConfiguration(IServiceCollection services, IConfiguration configuration)
+            if (!db.Roles.Any(r => r.Name == "vendedor"))
+            {
+                db.Roles.Add(new IdentityRole("vendedor"));
+                db.SaveChanges();
+            }
+        }
+    }
+
+    private static void AddJWTConfiguration(IServiceCollection services, 
+                                            IConfiguration configuration)
+    {
+        // Configurando JWT
+        var appSettingsSection = configuration.GetSection("AppSettings");
+        services.Configure<JwtAppSettings>(appSettingsSection);
+
+        var appSettings = appSettingsSection.Get<JwtAppSettings>();
+        var key = Encoding.ASCII.GetBytes(appSettings?.Secret ?? string.Empty);
+
+        services.AddAuthentication(opt =>
         {
-            // Configurando JWT
-            var appSettingsSection = configuration.GetSection("AppSettings");
-            services.Configure<JwtAppSettings>(appSettingsSection);
+            opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            opt.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
 
-            var appSettings = appSettingsSection.Get<JwtAppSettings>();
-            var key = Encoding.ASCII.GetBytes(appSettings?.Secret ?? string.Empty);
+        }).AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, bearerOpts => {
 
-            services.AddAuthentication(opt =>
+            bearerOpts.RequireHttpsMetadata = true;
+            bearerOpts.SaveToken = true;
+            bearerOpts.TokenValidationParameters = new TokenValidationParameters
             {
-                opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-                opt.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-
-            }).AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, bearerOpts =>
-            {
-
-                bearerOpts.RequireHttpsMetadata = true;
-                bearerOpts.SaveToken = true;
-                bearerOpts.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(key),
-                    ValidateIssuer = true,
-                    ValidateAudience = true,
-                    ValidateLifetime = true,
-                    RequireExpirationTime = false,
-                    ValidAudience = appSettings?.Audience,
-                    ValidIssuer = appSettings?.Issuer
-                };
-            });
-        }
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = new SymmetricSecurityKey(key),
+                ValidateIssuer = true,
+                ValidateAudience = true,
+                ValidateLifetime = true,
+                RequireExpirationTime = false,
+                ValidAudience = appSettings?.Audience,
+                ValidIssuer = appSettings?.Issuer
+            };
+        });
     }
 }
