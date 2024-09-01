@@ -10,6 +10,7 @@
   <ItemGroup>
     <PackageReference Include="Dapper" Version="2.1.35" />
     <PackageReference Include="MediatR" Version="12.3.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="8.0.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.6">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -20,9 +21,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DotnetMarketplace.Auth.API\DotnetMarketplace.Auth.API.csproj" />
     <ProjectReference Include="..\DotnetMarketplace.Catalog.Application\DotnetMarketplace.Catalog.Application.csproj" />
     <ProjectReference Include="..\DotnetMarketplace.Catalog.Data\DotnetMarketplace.Catalog.Data.csproj" />
     <ProjectReference Include="..\DotnetMarketPlace.ContentManager.Data\DotnetMarketPlace.ContentManager.Data.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="NewFolder\" />
   </ItemGroup>
 
 </Project>

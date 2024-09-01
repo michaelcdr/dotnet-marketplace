@@ -8,3 +8,9 @@ function getLoader(msg) {
     </div><div class="loader-text">${msg}</div>
   </div>`;
 }
+
+
+function logout(el) {
+
+    $("#form-logout").trigger('submit');
+}

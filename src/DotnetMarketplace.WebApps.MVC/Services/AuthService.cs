@@ -1,14 +1,13 @@
-﻿using DotnetMarketplace.Core.Responses;
+﻿using DotnetMarketplace.Core.Communication;
+using DotnetMarketplace.Core.Services;
 using DotnetMarketplace.WebApps.MVC.Models;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Security.Claims;
-using System.Text;
-using System.Text.Json;
 
 namespace DotnetMarketplace.WebApps.MVC.Services;
 
-public class AuthService : IAuthService
+public class AuthService : ServiceBase, IAuthService
 {
     private readonly HttpClient _httpClient;
     private readonly IHttpContextAccessor _httpContextAccessor;
@@ -21,67 +20,48 @@ public class AuthService : IAuthService
         _httpClient.BaseAddress = new Uri("https://localhost:7070/");
     }
 
-    public async Task<AppResponse<TokenGeneratedResponse>> Login(UserLogin loginModel)
+    public async Task<TokenGeneratedResponse> Login(UserLogin loginModel)
     {
-        var opts = new JsonSerializerOptions
-        {
-            PropertyNameCaseInsensitive = true,
-        };
-        var content = new StringContent(
-            JsonSerializer.Serialize(loginModel, opts),
-            Encoding.UTF8,
-            "application/json"
-        );
+        HttpResponseMessage response = await _httpClient.PostAsync("api/conta/login", FormatContent(loginModel));
 
-        var response = await _httpClient.PostAsync("api/conta/login", content);
+        if (!HandleResponseErrors(response)) 
+            return new TokenGeneratedResponse
+            {
+                ResponseResult = await Deserialize<ResponseResult>(response)
+            };
 
-        string retorno = await response.Content.ReadAsStringAsync();
+        var result = await Deserialize<TokenGeneratedResponse>(response);
 
-        if (!response.IsSuccessStatusCode)
-        {
-            return new AppResponse<TokenGeneratedResponse>(false, "erro");
-        }
+        if (result == null) throw new InvalidOperationException("Resultado inválido ao tentar logar.");
 
-        var result = JsonSerializer.Deserialize<AppResponse<TokenGeneratedResponse>>(retorno, opts);
-
-        await AutenticarRegistrandoClaimns(result.Data);
+        await AutenticarRegistrandoClaims(result);
 
         return result;
     }
 
-    public async Task<AppResponse<TokenGeneratedResponse>> Register(UserRegister loginModel)
+    public async Task<TokenGeneratedResponse> Register(UserRegister loginModel)
     {
-        var opts = new JsonSerializerOptions
-        {
-            PropertyNameCaseInsensitive = true,
-        };
-
-        var content = new StringContent(
-            JsonSerializer.Serialize(loginModel, new JsonSerializerOptions
-            {
-                PropertyNameCaseInsensitive = true,
-            }),
-            Encoding.UTF8,
-            "application/json"
-        );
-
-        var response = await _httpClient.PostAsync("api/conta/registro", content);
+        var response = await _httpClient.PostAsync("api/conta/registro", FormatContent(loginModel));
 
         string retorno = await response.Content.ReadAsStringAsync();
+        
+        if (!HandleResponseErrors(response)) return await Deserialize<TokenGeneratedResponse>(response);
 
-        var result = JsonSerializer.Deserialize<AppResponse<TokenGeneratedResponse>>(retorno, opts);
+        var result = await Deserialize<TokenGeneratedResponse>(response);
 
-        if (result == null || result.Data == null) return new AppResponse<TokenGeneratedResponse>(false, "erro");
+        if (result == null) throw new InvalidOperationException("Resultado inválido ao tentar registrar usuário.");
 
-        await AutenticarRegistrandoClaimns(result.Data);
+        await AutenticarRegistrandoClaims(result);
 
         return result;
     } 
 
-    private async Task AutenticarRegistrandoClaimns(TokenGeneratedResponse tokenResult)
+    private async Task AutenticarRegistrandoClaims(TokenGeneratedResponse tokenResult)
     {
-        var claims = new List<Claim>();
-
+        var claims = new List<Claim>
+        {
+            new Claim("JWT", tokenResult.AccessToken)
+        };
         claims.AddRange(tokenResult.UserToken.Claims.Select(e => new Claim(e.Type, e.Value)).ToList());
 
         var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);

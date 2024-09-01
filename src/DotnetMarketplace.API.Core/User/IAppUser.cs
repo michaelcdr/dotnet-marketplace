@@ -1,15 +1,16 @@
-﻿using System.Security.Claims;
+﻿using Microsoft.AspNetCore.Http;
+using System.Security.Claims;
 
-namespace DotnetMarketplace.WebApps.MVC.Extensions
+namespace DotnetMarketplace.API.Core.User
 {
-    public interface IUser
+    public interface IAppUser
     {
         string Name { get; }
         Guid GetUserId();
         string GetUserEmail();
         string GetUserToken();
         bool IsAuthetiacated();
-        bool HasRole(string role); 
+        bool HasRole(string role);
         IEnumerable<Claim> GetClaims();
         HttpContext GetHttpContext();
     }

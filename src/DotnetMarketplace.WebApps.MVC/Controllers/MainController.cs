@@ -23,5 +23,5 @@ public abstract class MainController : Controller
         ModelState.AddModelError(string.Empty, mensagem);
     }
 
-    protected bool OperacaoValida() =>ModelState.ErrorCount == 0;
+    protected bool OperacaoValida() => ModelState.ErrorCount == 0;
 }

@@ -1,4 +1,6 @@
-﻿namespace DotnetMarketplace.Auth.API.Configuration;
+﻿using DotnetMarketplace.Auth.API.Services;
+
+namespace DotnetMarketplace.Auth.API.Configuration;
 
 public static class APIConfig
 {
@@ -35,6 +37,12 @@ public static class APIConfig
         {
             endpo.MapControllers();
         });
+
+        using (var scope = app.ApplicationServices.CreateScope())
+        {
+            var service = scope.ServiceProvider.GetRequiredService<ISeedService>();
+            service.Executar().GetAwaiter().GetResult();
+        }
 
         return app;
     }

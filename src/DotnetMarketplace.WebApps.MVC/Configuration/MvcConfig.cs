@@ -12,7 +12,8 @@ public static class MvcConfig
         services.AddControllersWithViews(options =>
         {
             options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
-        });
+
+        }).AddRazorRuntimeCompilation();
 
         string connStr = configuration?.GetConnectionString("DefaultConnection") ?? string.Empty;
         services.AddDbContext<ContentManagerContext>(options => options.UseSqlServer(connStr));

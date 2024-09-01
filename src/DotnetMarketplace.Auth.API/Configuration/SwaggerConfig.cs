@@ -10,8 +10,8 @@ namespace DotnetMarketplace.Auth.API.Configuration
             {
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
-                    Title = "Marketplace Identity API",
-                    Description = "Api de autenticação",
+                    Title = "Marketplace - API de Autenticação",
+                    Description = "API de Autenticação",
                     Contact = new OpenApiContact
                     {
                         Name = "Michael Costa dos Reis",

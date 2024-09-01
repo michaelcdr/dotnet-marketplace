@@ -59,6 +59,7 @@ namespace DotnetMarketplace.Auth.API.Jwt
                     {
                         Type = c.Type,
                         Value = c.Value
+
                     }).ToList(),
                 }
             };

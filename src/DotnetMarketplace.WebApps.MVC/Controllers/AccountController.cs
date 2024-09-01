@@ -1,5 +1,4 @@
-﻿using DotnetMarketplace.Core.Responses;
-using DotnetMarketplace.WebApps.MVC.Models;
+﻿using DotnetMarketplace.WebApps.MVC.Models;
 using DotnetMarketplace.WebApps.MVC.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
@@ -7,13 +6,13 @@ using System.Diagnostics;
 
 namespace DotnetMarketplace.WebApps.MVC.Controllers;
 
-public class AuthController : Controller
+public class AccountController : MainController
 {
-    private readonly ILogger<AuthController> _logger;
+    private readonly ILogger<AccountController> _logger;
     private readonly IAuthService _authService;
 
-    public AuthController(ILogger<AuthController> logger,
-                          IAuthService authService)
+    public AccountController(ILogger<AccountController> logger,
+                             IAuthService authService)
     {
         _logger = logger;
         _authService = authService;
@@ -24,24 +23,28 @@ public class AuthController : Controller
         return View();
     }
 
-    [Route("minha-conta/entrar")]
+    [Route("/minha-conta/entrar")]
     public IActionResult Login()
     {
         return View();
     }
     
     [HttpPost]
-    [Route("minha-conta/entrar")]
+    [Route("/minha-conta/entrar")]
     public async Task<IActionResult> Login(UserLogin model)
     {
         if (!ModelState.IsValid) return View(model);
 
-        AppResponse<TokenGeneratedResponse> result = await _authService.Login(model);
+        var response = await _authService.Login(model);
 
+        if (ResponsePossuiErros(response.ResponseResult)) return View(model);
+        
         return RedirectToAction("Index", "Home");
     }
 
-    public async Task<IActionResult> Sair()
+    [HttpPost]
+    [Route("/minha-conta/sair")]
+    public async Task<IActionResult> Logout()
     {
         await HttpContext.SignOutAsync();
 

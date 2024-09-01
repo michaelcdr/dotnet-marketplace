@@ -37,7 +37,7 @@ public class AuthController : MainApiController
             return CustomResponse();
         }
 
-        return CustomResponse(response);
+        return CustomResponse(response.Data);
     }
 
     /// <summary>
@@ -60,6 +60,6 @@ public class AuthController : MainApiController
             return CustomResponse();
         }
 
-        return CustomResponse(response);
+        return CustomResponse(response.Data);
     }
 }

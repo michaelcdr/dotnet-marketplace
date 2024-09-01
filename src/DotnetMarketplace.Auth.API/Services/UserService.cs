@@ -12,6 +12,7 @@ public class UserService : IUserService
     private readonly ITokenGenerator _tokenGenerator;
     private const string MSG_ERRO = "Não foi possivel cadastrar o usuário.";
     private const string MSG_SUCESSO = "Usuário cadastrado com sucesso.";
+    private const string MSG_ERRO_LOGAR = "Não foi possivel logar.";
     private const string ROLE_COMUM = "comum";
     private const string ROLE_VENDEDOR = "vendedor";
     private const string ROLE_ADMIN = "admin";
@@ -80,15 +81,15 @@ public class UserService : IUserService
         var result = await _signInManager.PasswordSignInAsync(request.UserName, request.Password, false, true);
 
         if (!result.Succeeded) 
-            return new AppResponse<TokenGeneratedResponse>(false, "Não foi possivel logar.", new List<Notification> { 
-                new Notification("Não foi possivel logar.","") 
+            return new AppResponse<TokenGeneratedResponse>(false, MSG_ERRO_LOGAR, new List<Notification> { 
+                new Notification(MSG_ERRO_LOGAR,"") 
             });
 
         TokenGeneratedResponse? tokenResultado = await _tokenGenerator.Generate(request.UserName);
 
         if (tokenResultado == null)
-            return new AppResponse<TokenGeneratedResponse>(false, "Não foi possivel logar.", new List<Notification> {
-                new Notification("Não foi possivel logar.","")
+            return new AppResponse<TokenGeneratedResponse>(false, MSG_ERRO_LOGAR, new List<Notification> {
+                new Notification(MSG_ERRO_LOGAR,"")
             });
 
         return new AppResponse<TokenGeneratedResponse>(true, "Logado com sucesso.") 

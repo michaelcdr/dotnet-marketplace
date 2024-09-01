@@ -12,11 +12,13 @@ public static class IdentityConfig
 {
     public static IServiceCollection AddIdentityConfig(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddDbContext<ApplicationDbContext>(opt => opt.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+        services.AddDbContext<ApplicationDbContext>(
+            opt => opt.UseSqlServer(configuration.GetConnectionString("DefaultConnection"))
+        );
 
         services.AddIdentity<IdentityUser, IdentityRole>()
-            //.AddRoles<IdentityRole>()
             //.AddErrorDescriber<IdentityErrosEmPortugues>()
+            .AddRoles<IdentityRole>()
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddDefaultTokenProviders();
 
@@ -41,36 +43,8 @@ public static class IdentityConfig
         app.UseAuthentication();
         app.UseAuthorization();
 
-        SeedIdentityConfigs(app);
-
         return app;
-    }
-
-    private static void SeedIdentityConfigs(IApplicationBuilder app)
-    {
-        using (var scope = app.ApplicationServices.CreateScope())
-        {
-            var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-
-            if (!db.Roles.Any(r => r.Name == "admin"))
-            {
-                db.Roles.Add(new IdentityRole("admin"));
-                db.SaveChanges();
-            }
-
-            if (!db.Roles.Any(r => r.Name == "comum"))
-            {
-                db.Roles.Add(new IdentityRole("comum"));
-                db.SaveChanges();
-            }
-
-            if (!db.Roles.Any(r => r.Name == "vendedor"))
-            {
-                db.Roles.Add(new IdentityRole("vendedor"));
-                db.SaveChanges();
-            }
-        }
-    }
+    } 
 
     private static void AddJWTConfiguration(IServiceCollection services, 
                                             IConfiguration configuration)

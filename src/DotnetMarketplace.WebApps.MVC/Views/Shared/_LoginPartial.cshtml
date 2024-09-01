@@ -1,22 +1,29 @@
-﻿@if (Context.User.Identity.IsAuthenticated)
+﻿@using DotnetMarketplace.API.Core.User
+
+@inject IAppUser AppUser
+
+@if (AppUser.IsAuthetiacated())
 {
     <span class="login-nav text-light">
         <i class="fa fa-user"></i>
         Olá,
         <a href="@Model.UrlPerfil" class="a-primary">
-            @Model.Usuario
+            @AppUser.Name
         </a> clique em
-        <a href="/logout" class="a-primary" title="Sair no sistema" data-container="body"
+        <a href="javascript:void(0);" onclick="logout(this)" 
+            class="a-primary" title="Sair no sistema" data-container="body"
            data-toggle="tooltip" data-placement="body">
             Sair
         </a> para fazer seu logout.
     </span>
+    <form asp-action="Logout" asp-controller="Account" class="form-signin mt-5" id="form-logout" method="post">
+    </form>
 }
 else
 {
     <span class="login-nav text-light">
         <i class="fa fa-user"></i> Olá, Faça seu
-        <a asp-action="Login" asp-controller="Auth" class="a-primary" data-container="body" title="Entrar no sistema"
+        <a asp-action="Login" asp-controller="Account" class="a-primary" data-container="body" title="Entrar no sistema"
            data-toggle="tooltip" data-placement="body">
             Login
         </a>

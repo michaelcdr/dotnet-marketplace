@@ -8,6 +8,7 @@ namespace DotnetMarketplace.Auth.API.Configuration
         public static IServiceCollection AddServicesConfig(this IServiceCollection services)
         {
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<ISeedService, SeedService>();
             services.AddScoped<ITokenGenerator, TokenGenerator>();
             return services;
         }

@@ -1,12 +1,14 @@
 ﻿using DotnetMarketplace.Core.Responses;
 using DotnetMarketplace.WebApps.MVC.Models;
 
-namespace DotnetMarketplace.WebApps.MVC.Services
-{
-    public interface IAuthService
-    {
-        Task<AppResponse<TokenGeneratedResponse>> Login(UserLogin loginModel);
+namespace DotnetMarketplace.WebApps.MVC.Services;
 
-        Task<AppResponse<TokenGeneratedResponse>> Register(UserRegister loginModel);
-    }
+/// <summary>
+/// Service that comunicate with Autentication API.
+/// </summary>
+public interface IAuthService
+{
+    Task<TokenGeneratedResponse> Login(UserLogin loginModel);
+
+    Task<TokenGeneratedResponse> Register(UserRegister loginModel);
 }
