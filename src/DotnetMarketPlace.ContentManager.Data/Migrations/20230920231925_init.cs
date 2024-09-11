@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace DotnetMarketPlace.ContentManager.Data.Migrations
+namespace MKT.ContentManager.Data.Migrations
 {
     /// <inheritdoc />
     public partial class init : Migration

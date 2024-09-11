@@ -1,13 +1,13 @@
-﻿using DotnetMarketplace.Core.DomainObjects;
+﻿using MKT.Core.DomainObjects;
 
-namespace DotnetMarketplace.Catalog.Domain.Entities
+namespace MKT.Catalog.Domain.Entities
 {
     public class Category : Entity, IAggregateRoot
     {
         public string Title { get; set; } = string.Empty;
         public string Image { get; set; } = string.Empty;
         public ICollection<SubCategory>? SubCategories { get; set; } = new HashSet<SubCategory>();
-        
+
         protected Category() { }
 
         public Category(string title, string image)
@@ -18,11 +18,11 @@ namespace DotnetMarketplace.Catalog.Domain.Entities
             Validate();
         }
 
-        public void AddSubCategory(string subCategory) 
+        public void AddSubCategory(string subCategory)
         {
             this?.SubCategories?.Add(
                 new SubCategory(
-                    subCategory, 
+                    subCategory,
                     this
                 )
             );
@@ -35,6 +35,6 @@ namespace DotnetMarketplace.Catalog.Domain.Entities
             if (string.IsNullOrEmpty(Image)) throw new DomainException("Informe a imagem");
         }
 
-        public override string ToString() { return $"ID: {this.Id}, {Title}"; }
+        public override string ToString() { return $"ID: {Id}, {Title}"; }
     }
 }

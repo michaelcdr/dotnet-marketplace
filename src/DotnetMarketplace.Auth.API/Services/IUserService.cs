@@ -1,6 +1,6 @@
 ﻿using DotnetMarketplace.Auth.API.Jwt;
 using DotnetMarketplace.Auth.API.Models;
-using DotnetMarketplace.Core.Responses;
+using MKT.Core.Responses;
 
 namespace DotnetMarketplace.Auth.API.Services
 {

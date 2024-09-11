@@ -1,0 +1,6 @@
+@MKT.ContentManager.API_HostAddress = http://localhost:5072
+
+GET {{MKT.ContentManager.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -1,4 +1,4 @@
-﻿namespace DotnetMarketplace.Core.Data
+﻿namespace MKT.Core.Data
 {
     public interface IUnitOfWork
     {

@@ -93,6 +93,7 @@ namespace DotnetMarketplace.Auth.API.Jwt
         {
             var claims = await _userManager.GetClaimsAsync(identityUser);
 
+            claims.Add(new Claim(ClaimTypes.Name, identityUser.UserName ?? string.Empty));
             claims.Add(new Claim(JwtRegisteredClaimNames.Sub, identityUser.Id));
             claims.Add(new Claim(JwtRegisteredClaimNames.Email, identityUser.Email ?? string.Empty));
             claims.Add(new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()));

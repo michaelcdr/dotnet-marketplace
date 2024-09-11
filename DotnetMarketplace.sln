@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotnetMarketplace.Core", "src\DotnetMarketplace.Domain\DotnetMarketplace.Core.csproj", "{FB40C3E0-7540-48EC-8C8E-7A8B6CF778C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MKT.Core", "src\DotnetMarketplace.Domain\MKT.Core.csproj", "{FB40C3E0-7540-48EC-8C8E-7A8B6CF778C3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sales", "Sales", "{829FC54B-0AFB-4AD0-979B-FF064ED7C497}"
 EndProject
@@ -11,7 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Catalog", "Catalog", "{A0FD
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotnetMarketplace.Sales.Domain", "src\DotnetMarketplace.Sales.Domain\DotnetMarketplace.Sales.Domain.csproj", "{C3E82F14-2949-499F-A546-3FA1D1F607CF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotnetMarketplace.Catalog.Domain", "src\DotnetMarketplace.Catalog.Domain\DotnetMarketplace.Catalog.Domain.csproj", "{D7B90A75-46EA-4047-9BEF-5C3005803CF2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MKT.Catalog.Domain", "src\DotnetMarketplace.Catalog.Domain\MKT.Catalog.Domain.csproj", "{D7B90A75-46EA-4047-9BEF-5C3005803CF2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{1BCCB270-6E3B-43F7-9938-0648A6A262E5}"
 EndProject
@@ -25,17 +25,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotnetMarketplace.WebApps.M
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ContentManager", "ContentManager", "{E8D851AC-42D9-4B7D-9A0F-4BE7BF2AF853}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotnetMarketPlace.ContentManager.Domain", "src\DotnetMarketPlace.ContentManager.Domain\DotnetMarketPlace.ContentManager.Domain.csproj", "{CDA2EEEB-790C-4B09-B82B-115878030F76}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MKT.ContentManager.Domain", "src\DotnetMarketPlace.ContentManager.Domain\MKT.ContentManager.Domain.csproj", "{CDA2EEEB-790C-4B09-B82B-115878030F76}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotnetMarketPlace.ContentManager.Data", "src\DotnetMarketPlace.ContentManager.Data\DotnetMarketPlace.ContentManager.Data.csproj", "{00C45049-E342-4D7C-8F3D-565A70FB9579}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MKT.ContentManager.Data", "src\DotnetMarketPlace.ContentManager.Data\MKT.ContentManager.Data.csproj", "{00C45049-E342-4D7C-8F3D-565A70FB9579}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotnetMarketplace.Catalog.Data", "src\DotnetMarketplace.Catalog.Data\DotnetMarketplace.Catalog.Data.csproj", "{8ED8233C-980C-4148-A962-BBC50A4E81FB}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotnetMarketplace.Catalog.Application", "src\DotnetMarketplace.Catalog.Application\DotnetMarketplace.Catalog.Application.csproj", "{8E7D8DE2-BBB5-4594-ACCD-AD2063C50D00}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{E59FE2F4-D5AA-45F3-A953-420015209CA6}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotnetMarketplace.Catalog.Domain.Tests", "tests\DotnetMarketplace.Catalog.Domain.Tests\DotnetMarketplace.Catalog.Domain.Tests.csproj", "{B5BEF9DE-A5CD-4339-BF52-3014C7C1CB2C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MKT.Catalog.Infra", "src\DotnetMarketplace.Catalog.Data\MKT.Catalog.Infra.csproj", "{8ED8233C-980C-4148-A962-BBC50A4E81FB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2CB7E961-66D0-4DC7-8A4D-7CA880BB470C}"
 	ProjectSection(SolutionItems) = preProject
@@ -54,7 +48,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{06
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MessageBus", "MessageBus", "{514940A0-BF38-446B-9456-3EAEE047D415}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotnetMarketplace.API.Core", "src\DotnetMarketplace.API.Core\DotnetMarketplace.API.Core.csproj", "{2877D52B-7492-4439-8B5B-A794CCEF845D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MKT.API.Core", "src\DotnetMarketplace.API.Core\MKT.API.Core.csproj", "{2877D52B-7492-4439-8B5B-A794CCEF845D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{C8C0409E-20CD-45DC-A75F-76D9F4CE390C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IntegrationTests", "IntegrationTests", "{4BA06178-9CAD-45C2-9993-98F3BBE6207B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{2DF88BA6-20EB-448D-9B05-480D64E2FF27}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotnetMarketplace.UnitTests.Catalog", "tests\DotnetMarketplace.UnitTests\DotnetMarketplace.UnitTests.Catalog.csproj", "{99AE0781-9CE5-4F5C-9ABE-F910F492F0A7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotnetMarketplace.Catalog.IntegrationTests", "tests\DotnetMarketplace.Catalog.IntegrationTests\DotnetMarketplace.Catalog.IntegrationTests.csproj", "{B0109D0A-BCD7-4F2E-8800-FB79696A9351}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MKT.Catalog.API", "src\MKT.Catalog.API\MKT.Catalog.API.csproj", "{F920D885-4ADA-43CD-903B-71559B1EF7A6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MKT.ContentManager.API", "src\MKT.ContentManager.API\MKT.ContentManager.API.csproj", "{20AB7635-6053-4EFC-99D2-5F2346B5E941}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -94,14 +102,6 @@ Global
 		{8ED8233C-980C-4148-A962-BBC50A4E81FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8ED8233C-980C-4148-A962-BBC50A4E81FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8ED8233C-980C-4148-A962-BBC50A4E81FB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8E7D8DE2-BBB5-4594-ACCD-AD2063C50D00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8E7D8DE2-BBB5-4594-ACCD-AD2063C50D00}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8E7D8DE2-BBB5-4594-ACCD-AD2063C50D00}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8E7D8DE2-BBB5-4594-ACCD-AD2063C50D00}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B5BEF9DE-A5CD-4339-BF52-3014C7C1CB2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B5BEF9DE-A5CD-4339-BF52-3014C7C1CB2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B5BEF9DE-A5CD-4339-BF52-3014C7C1CB2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B5BEF9DE-A5CD-4339-BF52-3014C7C1CB2C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E0A30415-56EC-4B15-B573-104C65274CC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E0A30415-56EC-4B15-B573-104C65274CC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E0A30415-56EC-4B15-B573-104C65274CC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -110,6 +110,22 @@ Global
 		{2877D52B-7492-4439-8B5B-A794CCEF845D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2877D52B-7492-4439-8B5B-A794CCEF845D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2877D52B-7492-4439-8B5B-A794CCEF845D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99AE0781-9CE5-4F5C-9ABE-F910F492F0A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99AE0781-9CE5-4F5C-9ABE-F910F492F0A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99AE0781-9CE5-4F5C-9ABE-F910F492F0A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99AE0781-9CE5-4F5C-9ABE-F910F492F0A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0109D0A-BCD7-4F2E-8800-FB79696A9351}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0109D0A-BCD7-4F2E-8800-FB79696A9351}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0109D0A-BCD7-4F2E-8800-FB79696A9351}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0109D0A-BCD7-4F2E-8800-FB79696A9351}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F920D885-4ADA-43CD-903B-71559B1EF7A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F920D885-4ADA-43CD-903B-71559B1EF7A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F920D885-4ADA-43CD-903B-71559B1EF7A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F920D885-4ADA-43CD-903B-71559B1EF7A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20AB7635-6053-4EFC-99D2-5F2346B5E941}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20AB7635-6053-4EFC-99D2-5F2346B5E941}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20AB7635-6053-4EFC-99D2-5F2346B5E941}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20AB7635-6053-4EFC-99D2-5F2346B5E941}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -128,14 +144,17 @@ Global
 		{CDA2EEEB-790C-4B09-B82B-115878030F76} = {E8D851AC-42D9-4B7D-9A0F-4BE7BF2AF853}
 		{00C45049-E342-4D7C-8F3D-565A70FB9579} = {E8D851AC-42D9-4B7D-9A0F-4BE7BF2AF853}
 		{8ED8233C-980C-4148-A962-BBC50A4E81FB} = {A0FDB2C6-D434-4888-A9D4-9F83CB0963A7}
-		{8E7D8DE2-BBB5-4594-ACCD-AD2063C50D00} = {A0FDB2C6-D434-4888-A9D4-9F83CB0963A7}
-		{E59FE2F4-D5AA-45F3-A953-420015209CA6} = {A0FDB2C6-D434-4888-A9D4-9F83CB0963A7}
-		{B5BEF9DE-A5CD-4339-BF52-3014C7C1CB2C} = {E59FE2F4-D5AA-45F3-A953-420015209CA6}
 		{1EEAD870-121D-413F-85B5-914C37A1F1A3} = {35EF992D-5585-4410-9C85-E2EA2E6C8073}
 		{E0A30415-56EC-4B15-B573-104C65274CC2} = {1EEAD870-121D-413F-85B5-914C37A1F1A3}
 		{06D0D5E9-DA96-4FF5-942F-655B39E41474} = {0DEC7FAE-D852-4D5E-9B97-3F4BF20E3516}
 		{514940A0-BF38-446B-9456-3EAEE047D415} = {0DEC7FAE-D852-4D5E-9B97-3F4BF20E3516}
 		{2877D52B-7492-4439-8B5B-A794CCEF845D} = {06D0D5E9-DA96-4FF5-942F-655B39E41474}
+		{4BA06178-9CAD-45C2-9993-98F3BBE6207B} = {C8C0409E-20CD-45DC-A75F-76D9F4CE390C}
+		{2DF88BA6-20EB-448D-9B05-480D64E2FF27} = {C8C0409E-20CD-45DC-A75F-76D9F4CE390C}
+		{99AE0781-9CE5-4F5C-9ABE-F910F492F0A7} = {2DF88BA6-20EB-448D-9B05-480D64E2FF27}
+		{B0109D0A-BCD7-4F2E-8800-FB79696A9351} = {4BA06178-9CAD-45C2-9993-98F3BBE6207B}
+		{F920D885-4ADA-43CD-903B-71559B1EF7A6} = {A0FDB2C6-D434-4888-A9D4-9F83CB0963A7}
+		{20AB7635-6053-4EFC-99D2-5F2346B5E941} = {E8D851AC-42D9-4B7D-9A0F-4BE7BF2AF853}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2A7830BE-9810-4098-A590-E89A883429E1}

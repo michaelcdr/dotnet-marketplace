@@ -1,10 +1,10 @@
-﻿using DotnetMarketplace.Catalog.Data.Data;
-using DotnetMarketplace.Catalog.Domain.Entities;
-using DotnetMarketplace.Catalog.Domain.Repositories;
-using DotnetMarketplace.Core.Data;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using MKT.Catalog.Infra.Data;
+using MKT.Catalog.Domain.Entities;
+using MKT.Catalog.Domain.Repositories;
+using MKT.Core.Data;
 
-namespace DotnetMarketplace.Catalog.Data.Repositories
+namespace MKT.Catalog.Infra.Repositories
 {
     public class CategoryRepository : ICategoryRepository, IDisposable
     {
@@ -13,7 +13,7 @@ namespace DotnetMarketplace.Catalog.Data.Repositories
 
         public CategoryRepository(CatalogContext catalogContext)
         {
-            _db = catalogContext; 
+            _db = catalogContext;
         }
 
         public async Task<List<Category>> GetCategories()

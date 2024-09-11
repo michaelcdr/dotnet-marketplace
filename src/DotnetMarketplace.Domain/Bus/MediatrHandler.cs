@@ -1,13 +1,13 @@
-﻿using DotnetMarketplace.Core.Messages;
-using MediatR;
+﻿using MediatR;
+using MKT.Core.Messages;
 
-namespace DotnetMarketplace.Core.Bus
+namespace MKT.Core.Bus
 {
     public class MediatrHandler : IMediatrHandler
     {
         private readonly IMediator _mediatr;
-        public MediatrHandler(IMediator mediatr) 
-        { 
+        public MediatrHandler(IMediator mediatr)
+        {
             _mediatr = mediatr;
         }
 

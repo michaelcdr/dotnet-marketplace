@@ -1,11 +1,8 @@
-﻿using DotnetMarketplace.API.Core.User;
-using DotnetMarketplace.Catalog.Application.Services;
-using DotnetMarketplace.Catalog.Data.Repositories;
-using DotnetMarketplace.Catalog.Domain.Repositories;
-using DotnetMarketplace.Core.Bus;
-using DotnetMarketplace.WebApps.MVC.Services;
-using DotnetMarketPlace.ContentManager.Data.Repositories;
-using DotnetMarketPlace.ContentManager.Domain.Repositories;
+﻿using DotnetMarketplace.WebApps.MVC.Services;
+using DotnetMarketplace.WebApps.MVC.Services.Interfaces;
+using MKT.API.Core.User;
+using MKT.Core.Bus;
+using MKT.Core.Services;
 
 namespace DotnetMarketplace.WebApps.MVC.Configuration;
 
@@ -13,19 +10,17 @@ public static class DependencyInjectionConfig
 {
     public static IServiceCollection RegisterServices(this IServiceCollection services)
     {
-        services.AddSingleton<DapperContext>();
         services.AddHttpContextAccessor();
 
         services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<Program>());
 
-        services.AddHttpClient<IAuthService,AuthService>();
+        services.AddHttpClient<IAuthHttpService, AuthHttpService>();
+        services.AddHttpClient<ICatalogHttpService, CatalogHttpService>();
+        services.AddHttpClient<ICarouselHttpService, CarouselHttpService>();
+
         services.AddScoped<IAppUser, AppUser>();
         services.AddScoped<IMediatrHandler, MediatrHandler>();
-        services.AddScoped<ICarouselRepository, CarouselRepository>();
-        services.AddScoped<ICategoryRepository, CategoryRepository>();
-        services.AddScoped<IProductRepository, ProductRepository>();
-        services.AddScoped<ICatalogService, CatalogService>();
-
+        services.AddScoped<ISerializerService ,SerializerService>();
         return services;
     }
 }

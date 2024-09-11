@@ -1,4 +1,4 @@
-﻿namespace DotnetMarketplace.Core.Messages
+﻿namespace MKT.Core.Messages
 {
     public abstract class Message
     {

@@ -5,7 +5,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DotnetMarketplace.Core.Exceptions
+namespace MKT.Core.Exceptions
 {
     public class CustomHttpRequestException : Exception
     {
@@ -13,7 +13,7 @@ namespace DotnetMarketplace.Core.Exceptions
         public CustomHttpRequestException() { }
 
         public CustomHttpRequestException(string msg, Exception innerException)
-            :base(msg,innerException)
+            : base(msg, innerException)
         {
         }
 

@@ -1,7 +1,7 @@
-﻿using DotnetMarketplace.Catalog.Domain.Entities;
-using DotnetMarketplace.Core.Data;
+﻿using MKT.Catalog.Domain.Entities;
+using MKT.Core.Data;
 
-namespace DotnetMarketplace.Catalog.Domain.Repositories
+namespace MKT.Catalog.Domain.Repositories
 {
     public interface ICategoryRepository : IRepository<Category>
     {

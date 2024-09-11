@@ -1,7 +1,7 @@
 ﻿using FluentValidation.Results;
 using MediatR;
 
-namespace DotnetMarketplace.Core.Messages
+namespace MKT.Core.Messages
 {
     public abstract class Command : Message, IRequest<bool>
     {

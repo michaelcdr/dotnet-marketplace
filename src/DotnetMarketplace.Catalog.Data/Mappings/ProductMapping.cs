@@ -1,8 +1,8 @@
-﻿using DotnetMarketplace.Catalog.Domain.Entities;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders; 
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using MKT.Catalog.Domain.Entities;
 
-namespace DotnetMarketplace.Catalog.Data.Mappings
+namespace MKT.Catalog.Infra.Mappings
 {
     public class ProductMapping : IEntityTypeConfiguration<Product>
     {
@@ -21,7 +21,7 @@ namespace DotnetMarketplace.Catalog.Data.Mappings
                 .HasMaxLength(5000)
                 .IsRequired();
 
-            builder.Property(e => e.Price).HasPrecision(18,2).IsRequired();
+            builder.Property(e => e.Price).HasPrecision(18, 2).IsRequired();
 
             builder.Property(e => e.Stock).IsRequired();
 
@@ -59,7 +59,7 @@ namespace DotnetMarketplace.Catalog.Data.Mappings
         {
             builder.ToTable("ProductsImages").HasKey(e => e.Id);
 
-            builder.Property(e => e.FileName).IsRequired(); 
+            builder.Property(e => e.FileName).IsRequired();
         }
     }
 

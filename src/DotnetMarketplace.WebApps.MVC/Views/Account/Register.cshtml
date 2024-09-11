@@ -1,0 +1,71 @@
+﻿@model UserRegister
+
+@{
+    ViewData["Title"] = "Cadastre sua conta";
+}
+<main>
+    <div class="container">
+        <h1>Cadastre sua conta » <small>É novo na plataforma? Informe seus dados e acesse já ;)</small></h1>
+
+        <hr />
+
+        <form asp-action="Register" method="post" id="form-registrar">
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="UserName" class="control-label"></label>
+                        <input asp-for="UserName" class="form-control" />
+                        <span asp-validation-for="UserName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Email" class="control-label"></label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Name" class="control-label"></label>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="LastName" class="control-label"></label>
+                        <input asp-for="LastName" class="form-control" />
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Password" class="control-label"></label>
+                        <input asp-for="Password" type="password" class="form-control" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="PasswordConfirm" class="control-label"></label>
+                        <input asp-for="PasswordConfirm" type="password" class="form-control" />
+                        <span asp-validation-for="PasswordConfirm" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <button class="btn btn-outline-dark btn-block" type="submit" data-loading-text="Processando, aguarde...">
+                        Registrar
+                    </button>
+
+                    <vc:summary-errors></vc:summary-errors>
+                </div>
+
+                
+            </div>
+        </form>
+    </div>
+</main>

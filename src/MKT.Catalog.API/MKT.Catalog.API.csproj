@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>d49f4313-b53a-4024-86b6-c8cd85541af7</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DotnetMarketplace.API.Core\MKT.API.Core.csproj" />
+    <ProjectReference Include="..\DotnetMarketplace.Catalog.Data\MKT.Catalog.Infra.csproj" />
+    <ProjectReference Include="..\DotnetMarketplace.Catalog.Domain\MKT.Catalog.Domain.csproj" />
+    <ProjectReference Include="..\DotnetMarketPlace.ContentManager.Domain\MKT.ContentManager.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

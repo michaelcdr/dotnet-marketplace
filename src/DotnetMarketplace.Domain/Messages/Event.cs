@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace DotnetMarketplace.Core.Messages
+namespace MKT.Core.Messages
 {
     public abstract class Event : Message, INotification
     {

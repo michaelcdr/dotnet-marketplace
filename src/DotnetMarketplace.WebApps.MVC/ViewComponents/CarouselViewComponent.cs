@@ -1,30 +1,29 @@
-﻿using DotnetMarketplace.Catalog.Application.ViewModels;
-using DotnetMarketPlace.ContentManager.Domain.Repositories;
+﻿using DotnetMarketplace.WebApps.MVC.Models.Catalog;
+using DotnetMarketplace.WebApps.MVC.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
-namespace DotnetMarketplace.WebApps.MVC.ViewComponents
+namespace DotnetMarketplace.WebApps.MVC.ViewComponents;
+
+public class CarouselViewComponent : ViewComponent
 {
-    public class CarouselViewComponent : ViewComponent
+    private readonly ICarouselHttpService _carouselService;
+
+    public CarouselViewComponent(ICarouselHttpService carouselService)
     {
-        private readonly ICarouselRepository _carouselRepository;
+        _carouselService = carouselService;
+    }
 
-        public CarouselViewComponent(ICarouselRepository carouselRepository)
-        {
-            _carouselRepository = carouselRepository;
-        }
+    public async Task<IViewComponentResult> InvokeAsync()
+    {
+        List<CarouselViewModel> carouselItens = await _carouselService.GetItems();
 
-        public async Task<IViewComponentResult> InvokeAsync()
-        {
-            var carouselItens = await _carouselRepository.ObterTodos();
+        //var itens = new List<CarouselViewModel>();
 
-            var itens = new List<CarouselItemViewModel>();
+        //foreach (var item in carouselItens)
+        //    itens.Add(new CarouselItemViewModel { 
+        //        File = $"/img/carousel/{item.FileName}" 
+        //    });
 
-            foreach (var item in carouselItens)
-                itens.Add(new CarouselItemViewModel { 
-                    File = $"/img/carousel/{item.FileName}" 
-                });
-
-            return View(itens);
-        }
+        return View(carouselItens);
     }
 }

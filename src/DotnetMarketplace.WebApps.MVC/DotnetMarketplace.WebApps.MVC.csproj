@@ -21,14 +21,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DotnetMarketplace.Auth.API\DotnetMarketplace.Auth.API.csproj" />
-    <ProjectReference Include="..\DotnetMarketplace.Catalog.Application\DotnetMarketplace.Catalog.Application.csproj" />
-    <ProjectReference Include="..\DotnetMarketplace.Catalog.Data\DotnetMarketplace.Catalog.Data.csproj" />
-    <ProjectReference Include="..\DotnetMarketPlace.ContentManager.Data\DotnetMarketPlace.ContentManager.Data.csproj" />
+    <ProjectReference Include="..\DotnetMarketplace.API.Core\MKT.API.Core.csproj" />
+    <ProjectReference Include="..\DotnetMarketplace.Domain\MKT.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="NewFolder\" />
+    <Folder Include="Extensions\" />
   </ItemGroup>
 
 </Project>

@@ -1,27 +1,27 @@
-﻿using DotnetMarketplace.Catalog.Application.Services;
-using DotnetMarketplace.Catalog.Application.ViewModels;
+﻿using DotnetMarketplace.WebApps.MVC.Models;
+using DotnetMarketplace.WebApps.MVC.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
-namespace DotnetMarketplace.WebApps.MVC.ViewComponents
+namespace DotnetMarketplace.WebApps.MVC.ViewComponents;
+
+public class NavViewComponent : ViewComponent
 {
-    public class NavViewComponent:ViewComponent
+    private readonly ICatalogHttpService _catalogoHttpService;
+
+    public NavViewComponent(ICatalogHttpService catalogoService)
     {
-        private readonly ICatalogService _catalogoService;
-        public NavViewComponent(ICatalogService catalogoService)
-        {
-            _catalogoService = catalogoService;
-        }
+        _catalogoHttpService = catalogoService;
+    }
 
-        public async Task<IViewComponentResult> InvokeAsync()
+    public async Task<IViewComponentResult> InvokeAsync()
+    {
+        List<CategoryItemMenu> categoryItemMenus = await _catalogoHttpService.GetAll();
+        
+        var model = new NavViewModel 
         {
-            List<CategoryItemMenu> categoryItemMenus = await _catalogoService.GetCategoriesNavMenu();
-            
-            var model = new NavViewModel 
-            {
-                Categories = categoryItemMenus,
-            };
+            Categories = categoryItemMenus,
+        };
 
-            return View(model);
-        }
+        return View(model);
     }
 }

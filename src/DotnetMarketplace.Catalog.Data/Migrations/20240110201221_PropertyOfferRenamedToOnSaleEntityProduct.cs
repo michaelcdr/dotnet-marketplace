@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace DotnetMarketplace.Catalog.Data.Migrations
+namespace MKT.Catalog.Infra.Migrations
 {
     /// <inheritdoc />
     public partial class PropertyOfferRenamedToOnSaleEntityProduct : Migration

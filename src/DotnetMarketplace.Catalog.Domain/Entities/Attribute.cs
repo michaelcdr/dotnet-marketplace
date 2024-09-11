@@ -1,6 +1,6 @@
-﻿using DotnetMarketplace.Core.DomainObjects;
+﻿using MKT.Core.DomainObjects;
 
-namespace DotnetMarketplace.Catalog.Domain.Entities
+namespace MKT.Catalog.Domain.Entities
 {
     public class Attribute : Entity, IAggregateRoot
     {

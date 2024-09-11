@@ -1,5 +1,5 @@
-﻿using DotnetMarketplace.Core.Communication;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using MKT.Core.Communication;
 
 namespace DotnetMarketplace.WebApps.MVC.Controllers;
 

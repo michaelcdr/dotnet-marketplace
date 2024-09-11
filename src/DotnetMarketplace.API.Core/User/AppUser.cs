@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
 
-namespace DotnetMarketplace.API.Core.User
+namespace MKT.API.Core.User
 {
     public class AppUser : IAppUser
     {

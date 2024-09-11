@@ -1,7 +1,7 @@
 ﻿using DotnetMarketplace.Auth.API.Jwt;
 using DotnetMarketplace.Auth.API.Models;
-using DotnetMarketplace.Core.Responses;
 using Microsoft.AspNetCore.Identity;
+using MKT.Core.Responses;
 
 namespace DotnetMarketplace.Auth.API.Services;
 
@@ -13,6 +13,7 @@ public class UserService : IUserService
     private const string MSG_ERRO = "Não foi possivel cadastrar o usuário.";
     private const string MSG_SUCESSO = "Usuário cadastrado com sucesso.";
     private const string MSG_ERRO_LOGAR = "Não foi possivel logar.";
+    private const string MSG_ERRO_TOKEN = "Usuário registrado mas, não foi possivel gerar o token.";
     private const string ROLE_COMUM = "comum";
     private const string ROLE_VENDEDOR = "vendedor";
     private const string ROLE_ADMIN = "admin";
@@ -68,7 +69,7 @@ public class UserService : IUserService
         
         TokenGeneratedResponse? tokenResultado = await _tokenGenerator.Generate(request.UserName);
 
-        if (tokenResultado == null) return new AppResponse<TokenGeneratedResponse>(false, "Usuário registrado mas, não foi possivel gerar o token.");
+        if (tokenResultado == null) return new AppResponse<TokenGeneratedResponse>(false, MSG_ERRO_TOKEN);
 
         return new AppResponse<TokenGeneratedResponse>(true, MSG_SUCESSO) 
         {

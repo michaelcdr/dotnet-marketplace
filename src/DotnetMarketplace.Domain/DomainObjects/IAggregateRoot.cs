@@ -1,4 +1,4 @@
-﻿namespace DotnetMarketplace.Core.DomainObjects
+﻿namespace MKT.Core.DomainObjects
 {
     public interface IAggregateRoot { }
 }

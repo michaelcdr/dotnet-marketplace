@@ -1,9 +1,9 @@
 using DotnetMarketplace.Auth.API.Jwt;
 using DotnetMarketplace.Auth.API.Models;
 using DotnetMarketplace.Auth.API.Services;
-using DotnetMarketplace.Core.Controllers;
-using DotnetMarketplace.Core.Responses;
 using Microsoft.AspNetCore.Mvc;
+using MKT.API.Core.Controllers;
+using MKT.Core.Responses;
 
 namespace DotnetMarketplace.Auth.API.Controllers;
 

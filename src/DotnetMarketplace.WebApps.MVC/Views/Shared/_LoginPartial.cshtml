@@ -1,4 +1,4 @@
-﻿@using DotnetMarketplace.API.Core.User
+﻿@using MKT.API.Core.User
 
 @inject IAppUser AppUser
 
@@ -7,7 +7,7 @@
     <span class="login-nav text-light">
         <i class="fa fa-user"></i>
         Olá,
-        <a href="@Model.UrlPerfil" class="a-primary">
+        <a class="a-primary" asp-controller="Account" asp-action="Edit" >
             @AppUser.Name
         </a> clique em
         <a href="javascript:void(0);" onclick="logout(this)" 
@@ -28,7 +28,7 @@ else
             Login
         </a>
         <br /> ou
-        <a href="/registrar" class="a-primary" title="Entrar no sistema" data-container="body">
+        <a asp-action="Register" asp-controller="Account" class="a-primary" title="Entrar no sistema" data-container="body">
             Cadastre-se
         </a>.
     </span>

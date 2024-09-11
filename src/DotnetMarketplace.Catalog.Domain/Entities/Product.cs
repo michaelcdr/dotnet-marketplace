@@ -1,6 +1,6 @@
-﻿using DotnetMarketplace.Core.DomainObjects;
+﻿using MKT.Core.DomainObjects;
 
-namespace DotnetMarketplace.Catalog.Domain.Entities
+namespace MKT.Catalog.Domain.Entities
 {
     public class Product : Entity, IAggregateRoot
     {
@@ -15,22 +15,22 @@ namespace DotnetMarketplace.Catalog.Domain.Entities
         public int Stock { get; private set; }
         public string SKU { get; private set; } = string.Empty;
         public string UserId { get; private set; } = string.Empty;
-        public Guid SubCategoryId { get; private set; } 
-        public SubCategory? SubCategory { get; private set; }    
+        public Guid SubCategoryId { get; private set; }
+        public SubCategory? SubCategory { get; private set; }
         public ICollection<AttributeValue> AttributeValues { get; private set; } = new HashSet<AttributeValue>();
         public ICollection<ProductComment> Comments { get; private set; } = new HashSet<ProductComment>();
         public ICollection<ProductImage> Images { get; private set; } = new HashSet<ProductImage>();
 
         protected Product() { }
 
-        public Product(string title, 
-                       string? description, 
-                       decimal price, 
-                       string createdBy, 
-                       bool onSale, 
-                       int stock, 
-                       string sku, 
-                       string userId, 
+        public Product(string title,
+                       string? description,
+                       decimal price,
+                       string createdBy,
+                       bool onSale,
+                       int stock,
+                       string sku,
+                       string userId,
                        Guid subCategoryId)
         {
             CreatedAt = DateTime.Now;
@@ -43,7 +43,7 @@ namespace DotnetMarketplace.Catalog.Domain.Entities
             SKU = sku;
             UserId = userId;
             SubCategoryId = subCategoryId;
-            
+
             Validate();
         }
 

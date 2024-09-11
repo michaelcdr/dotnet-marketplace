@@ -1,15 +1,15 @@
-﻿using DotnetMarketplace.Core.Messages;
+﻿using MKT.Core.Messages;
 
-namespace DotnetMarketplace.Core.DomainObjects
+namespace MKT.Core.DomainObjects
 {
     public abstract class Entity
     {
         public Guid Id { get; set; }
-        
+
         private List<Event>? _notificacoes;
-        
+
         public IReadOnlyCollection<Event>? Notificacoes => _notificacoes?.AsReadOnly();
-        
+
         protected Entity()
         {
             Id = Guid.NewGuid();

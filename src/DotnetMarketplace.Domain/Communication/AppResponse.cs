@@ -1,4 +1,4 @@
-﻿namespace DotnetMarketplace.Core.Communication
+﻿namespace MKT.Core.Communication
 {
     public class AppResponse
     {
@@ -10,7 +10,7 @@
 
             if (errors != null)
             {
-                foreach(var error in errors)
+                foreach (var error in errors)
                     Errors.Mensagens.Add(error);
             }
         }
@@ -27,7 +27,7 @@
 
         public AppResponse GetResponse()
         {
-            return new AppResponse(this.Success, this.Message,this.GetErrors());
+            return new AppResponse(Success, Message, GetErrors());
         }
     }
 

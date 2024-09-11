@@ -1,4 +1,4 @@
-﻿using DotnetMarketplace.Core.DomainObjects;
+﻿using MKT.Core.DomainObjects;
 
 namespace DotnetMarketplace.Sales.Domain.Entities
 {

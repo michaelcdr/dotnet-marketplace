@@ -1,12 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace DotnetMarketplace.WebApps.MVC.ViewComponents
+namespace DotnetMarketplace.WebApps.MVC.ViewComponents;
+
+public class SummaryErrorsViewComponent : ViewComponent
 {
-    public class SummaryErrorsViewComponent : ViewComponent
+    public IViewComponentResult Invoke()
     {
-        public IViewComponentResult Invoke()
-        {
-            return View();
-        }
+        return View();
     }
 }

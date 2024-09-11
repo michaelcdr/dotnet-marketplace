@@ -1,6 +1,6 @@
-﻿using DotnetMarketplace.Core.DomainObjects;
+﻿using MKT.Core.DomainObjects;
 
-namespace DotnetMarketplace.Catalog.Domain.Entities
+namespace MKT.Catalog.Domain.Entities
 {
     public class ProductImage : Entity
     {
@@ -13,7 +13,7 @@ namespace DotnetMarketplace.Catalog.Domain.Entities
         {
             Id = id;
             ProductId = productId;
-            FileName = fileName;    
+            FileName = fileName;
         }
     }
 }

@@ -1,18 +1,18 @@
-﻿using DotnetMarketplace.Core.Data;
-using DotnetMarketplace.Core.Messages;
-using DotnetMarketPlace.ContentManager.Domain.Entities;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using MKT.ContentManager.Domain.Entities;
+using MKT.Core.Data;
+using MKT.Core.Messages;
 
-namespace DotnetMarketPlace.ContentManager.Data.Data
+namespace MKT.ContentManager.Data.Data
 {
     public class ContentManagerContext : DbContext, IUnitOfWork
     {
-        public ContentManagerContext(DbContextOptions<ContentManagerContext> options) 
-            : base(options) 
+        public ContentManagerContext(DbContextOptions<ContentManagerContext> options)
+            : base(options)
         {
-        
+
         }
-        
+
         public DbSet<CarouselImage> CarouselImages { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -29,7 +29,7 @@ namespace DotnetMarketPlace.ContentManager.Data.Data
             //    }
             //}
 
-            modelBuilder.Ignore<Event>(); 
+            modelBuilder.Ignore<Event>();
 
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(ContentManagerContext).Assembly);
         }

@@ -1,4 +1,4 @@
-﻿namespace DotnetMarketplace.Core.Responses
+﻿namespace MKT.Core.Responses
 {
     public class AppResponse<T>(bool sucesso, string mensagem, List<Notification>? erros = null)
     {

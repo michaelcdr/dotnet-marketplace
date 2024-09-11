@@ -1,6 +1,6 @@
-﻿using DotnetMarketplace.Core.DomainObjects;
+﻿using MKT.Core.DomainObjects;
 
-namespace DotnetMarketPlace.ContentManager.Domain.Entities
+namespace MKT.ContentManager.Domain.Entities
 {
     public class CarouselImage : Entity
     {

@@ -1,16 +1,16 @@
-﻿using DotnetMarketplace.Catalog.Data.Data;
-using DotnetMarketplace.Catalog.Domain.Entities;
-using DotnetMarketplace.Catalog.Domain.Repositories;
-using DotnetMarketplace.Core.Data;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using MKT.Catalog.Domain.Entities;
+using MKT.Catalog.Domain.Repositories;
+using MKT.Catalog.Infra.Data;
+using MKT.Core.Data;
 
-namespace DotnetMarketplace.Catalog.Data.Repositories
+namespace MKT.Catalog.Infra.Repositories
 {
     public class ProductRepository : IProductRepository
     {
         private readonly CatalogContext _db;
         public IUnitOfWork UnitOfWork => _db;
-        
+
         public ProductRepository(CatalogContext catalogContext)
         {
             _db = catalogContext;

@@ -1,8 +1,8 @@
-﻿using DotnetMarketplace.Catalog.Domain.Entities;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using MKT.Catalog.Domain.Entities;
 
-namespace DotnetMarketplace.Catalog.Data.Mappings
+namespace MKT.Catalog.Infra.Mappings
 {
     public class SubCategoryMapping : IEntityTypeConfiguration<SubCategory>
     {

@@ -1,21 +1,21 @@
-﻿using DotnetMarketplace.Catalog.Application.Services;
-using DotnetMarketplace.Catalog.Application.ViewModels;
+﻿using DotnetMarketplace.WebApps.MVC.Models.Catalog;
+using DotnetMarketplace.WebApps.MVC.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DotnetMarketplace.WebApps.MVC.ViewComponents
 {
     public class CategoryListViewComponent : ViewComponent
     {
-        private readonly ICatalogService _catalogoService;
+        private readonly ICatalogHttpService _catalogoService;
 
-        public CategoryListViewComponent(ICatalogService catalogoService)
+        public CategoryListViewComponent(ICatalogHttpService catalogoService)
         {
             _catalogoService = catalogoService; 
         }
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            List<HighlightCategoryViewModel> model = await _catalogoService.GetCategories(); 
+            List<HighlightCategoryViewModel> model = await _catalogoService.GetHighlightCategories(); 
 
             return View(model);
         }

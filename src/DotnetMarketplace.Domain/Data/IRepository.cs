@@ -1,6 +1,6 @@
-﻿using DotnetMarketplace.Core.DomainObjects;
+﻿using MKT.Core.DomainObjects;
 
-namespace DotnetMarketplace.Core.Data
+namespace MKT.Core.Data
 {
     public interface IRepository<T> : IDisposable where T : IAggregateRoot
     {

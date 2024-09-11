@@ -1,6 +1,6 @@
-﻿using DotnetMarketplace.Core.Messages;
+﻿using MKT.Core.Messages;
 
-namespace DotnetMarketplace.Core.Bus
+namespace MKT.Core.Bus
 {
     public interface IMediatrHandler
     {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace DotnetMarketplace.Core.Controllers;
+namespace MKT.API.Core.Controllers;
 
 [ApiController]
 public abstract class MainApiController : ControllerBase
@@ -9,7 +9,7 @@ public abstract class MainApiController : ControllerBase
 
     protected ActionResult CustomResponse(object? result = null)
     {
-        if (OperationIsValid())  return Ok(result);
+        if (OperationIsValid()) return Ok(result);
 
         return BadRequest(new ValidationProblemDetails(new Dictionary<string, string[]>
         {
@@ -17,8 +17,8 @@ public abstract class MainApiController : ControllerBase
             { "Mensagens", Errors.ToArray() }
         }));
     }
-    
-    protected bool OperationIsValid() 
+
+    protected bool OperationIsValid()
     {
         return !Errors.Any();
     }

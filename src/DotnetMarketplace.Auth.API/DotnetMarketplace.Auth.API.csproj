@@ -28,8 +28,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DotnetMarketplace.API.Core\DotnetMarketplace.API.Core.csproj" />
-    <ProjectReference Include="..\DotnetMarketplace.Domain\DotnetMarketplace.Core.csproj" />
+    <ProjectReference Include="..\DotnetMarketplace.API.Core\MKT.API.Core.csproj" />
+    <ProjectReference Include="..\DotnetMarketplace.Domain\MKT.Core.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,6 +1,6 @@
-﻿using DotnetMarketplace.Core.DomainObjects;
+﻿using MKT.Core.DomainObjects;
 
-namespace DotnetMarketplace.Catalog.Domain.Entities
+namespace MKT.Catalog.Domain.Entities
 {
     public class SubCategory : Entity
     {
@@ -15,7 +15,7 @@ namespace DotnetMarketplace.Catalog.Domain.Entities
             Title = title;
             Category = category;
             CategoryId = category.Id;
-           
+
             Validate();
         }
 

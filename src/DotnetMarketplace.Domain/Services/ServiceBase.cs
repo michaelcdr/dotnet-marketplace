@@ -1,46 +1,27 @@
-﻿using DotnetMarketplace.Core.Communication;
-using DotnetMarketplace.Core.Exceptions;
-using System.Text;
-using System.Text.Json;
-
-namespace DotnetMarketplace.Core.Services
+﻿namespace MKT.Core.Services
 {
     public abstract class ServiceBase
     {
-        protected bool HandleResponseErrors(HttpResponseMessage response) 
+        private readonly ISerializerService _serializerService;
+
+        protected ServiceBase(ISerializerService serializerService)
         {
-            switch ((int)response.StatusCode)
-            {
-                case 401:
-                case 403:
-                case 404:
-                case 500:
-                    throw new CustomHttpRequestException(response.StatusCode);
-
-                case 400:
-                    return false;
-            }
-
-            response.EnsureSuccessStatusCode();
-            return true;
+            _serializerService = serializerService;
         }
 
-        protected async Task<T> Deserialize<T>(HttpResponseMessage responseMessage)
+        protected virtual bool HandleResponseErrors(HttpResponseMessage response)
         {
-            var options = new JsonSerializerOptions
-            {
-                PropertyNameCaseInsensitive = true
-            };
-
-            return JsonSerializer.Deserialize<T>(await responseMessage.Content.ReadAsStringAsync(), options);
+            return _serializerService.HandleResponseErrors(response);
         }
 
-        protected StringContent FormatContent(object data)
+        protected virtual async Task<T> Deserialize<T>(HttpResponseMessage responseMessage)
         {
-            return new StringContent(
-                JsonSerializer.Serialize(data),
-                Encoding.UTF8,
-                "application/json");
+            return await _serializerService.Deserialize<T>(responseMessage);
+        }
+
+        protected virtual StringContent FormatContent(object data)
+        {
+            return _serializerService.FormatContent(data);
         }
     }
 }

@@ -1,9 +1,9 @@
-﻿using DotnetMarketPlace.ContentManager.Data.Data;
-using DotnetMarketPlace.ContentManager.Domain.Entities;
-using DotnetMarketPlace.ContentManager.Domain.Repositories;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using MKT.ContentManager.Data.Data;
+using MKT.ContentManager.Domain.Entities;
+using MKT.ContentManager.Domain.Repositories;
 
-namespace DotnetMarketPlace.ContentManager.Data.Repositories
+namespace MKT.ContentManager.Data.Repositories
 {
     public class CarouselRepository : ICarouselRepository
     {

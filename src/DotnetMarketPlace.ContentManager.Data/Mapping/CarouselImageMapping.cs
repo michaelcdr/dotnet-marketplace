@@ -1,8 +1,8 @@
-﻿using DotnetMarketPlace.ContentManager.Domain.Entities;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using MKT.ContentManager.Domain.Entities;
 
-namespace DotnetMarketPlace.ContentManager.Data.Mapping
+namespace MKT.ContentManager.Data.Mapping
 {
     public class CarouselImageMapping : IEntityTypeConfiguration<CarouselImage>
     {
@@ -15,7 +15,7 @@ namespace DotnetMarketPlace.ContentManager.Data.Mapping
             builder
                 .Property(e => e.FileName)
                 .IsRequired();
-            
+
             builder
                 .Property(e => e.Ordem)
                 .IsRequired();

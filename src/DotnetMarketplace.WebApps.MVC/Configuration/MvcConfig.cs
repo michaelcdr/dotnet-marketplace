@@ -1,7 +1,4 @@
-﻿using DotnetMarketplace.Catalog.Data.Data;
-using DotnetMarketPlace.ContentManager.Data.Data;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace DotnetMarketplace.WebApps.MVC.Configuration;
 
@@ -15,9 +12,8 @@ public static class MvcConfig
 
         }).AddRazorRuntimeCompilation();
 
-        string connStr = configuration?.GetConnectionString("DefaultConnection") ?? string.Empty;
-        services.AddDbContext<ContentManagerContext>(options => options.UseSqlServer(connStr));
-        services.AddDbContext<CatalogContext>(options => options.UseSqlServer(connStr));
+        services.Configure<AppSettings>(configuration);
+
         return services;
     }
 

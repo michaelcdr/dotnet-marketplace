@@ -1,6 +1,6 @@
-﻿using DotnetMarketPlace.ContentManager.Domain.Entities;
+﻿using MKT.ContentManager.Domain.Entities;
 
-namespace DotnetMarketPlace.ContentManager.Domain.Repositories
+namespace MKT.ContentManager.Domain.Repositories
 {
     public interface ICarouselRepository
     {

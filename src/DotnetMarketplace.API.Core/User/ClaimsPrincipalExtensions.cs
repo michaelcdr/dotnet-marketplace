@@ -1,6 +1,6 @@
 ﻿using System.Security.Claims;
 
-namespace DotnetMarketplace.API.Core.User
+namespace MKT.API.Core.User
 {
     public static class ClaimsPrincipalExtensions
     {
