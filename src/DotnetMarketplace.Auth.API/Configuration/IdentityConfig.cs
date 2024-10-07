@@ -12,7 +12,6 @@ public static class IdentityConfig
 {
     public static IServiceCollection AddIdentityConfig(this IServiceCollection services, IConfiguration configuration)
     {
-
         services.AddDbContext<ApplicationDbContext>(
             opt => opt.UseSqlServer(configuration.GetConnectionString("DefaultConnection"))
         );
@@ -24,8 +23,7 @@ public static class IdentityConfig
             .AddDefaultTokenProviders();
 
         AddJWTConfiguration(services, configuration);
-
-        // definições de regras de segurança para a password
+         
         services.Configure<IdentityOptions>(opt =>
         {
             opt.Password.RequireDigit = false;

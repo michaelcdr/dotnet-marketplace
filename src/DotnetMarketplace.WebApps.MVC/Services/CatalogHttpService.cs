@@ -33,7 +33,7 @@ public class CatalogHttpService : ServiceBase, ICatalogHttpService
 
     public async Task<List<CategoryItemMenu>> GetAll()
     {
-        HttpResponseMessage response = await _httpClient.GetAsync("api/catalog");
+        HttpResponseMessage response = await _httpClient.GetAsync("api/catalog/category");
 
         var result = await Deserialize<List<CategoryItemMenu>>(response);
         return result;

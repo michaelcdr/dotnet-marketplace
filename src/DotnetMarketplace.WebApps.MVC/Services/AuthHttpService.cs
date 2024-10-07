@@ -17,9 +17,9 @@ public class AuthHttpService : ServiceBase, IAuthHttpService
     private readonly ISerializerService _serializerService;
 
     public AuthHttpService(HttpClient httpClient,
-                          IHttpContextAccessor httpContextAccessor,
-                          ISerializerService serializerService,
-                          IOptions<AppSettings> options) : base(serializerService)
+                           IHttpContextAccessor httpContextAccessor,
+                           ISerializerService serializerService,
+                           IOptions<AppSettings> options) : base(serializerService)
     {
         _httpClient = httpClient;
         _httpContextAccessor = httpContextAccessor;
@@ -51,8 +51,14 @@ public class AuthHttpService : ServiceBase, IAuthHttpService
         var response = await _httpClient.PostAsync("api/conta/registro", FormatContent(loginModel));
 
         string retorno = await response.Content.ReadAsStringAsync();
-        
-        if (!HandleResponseErrors(response)) return await Deserialize<TokenGeneratedResponse>(response);
+
+        if (!HandleResponseErrors(response))
+        {
+            return new TokenGeneratedResponse
+            {
+                ResponseResult = await Deserialize<ResponseResult>(response)
+            };
+        }
 
         var result = await Deserialize<TokenGeneratedResponse>(response);
 

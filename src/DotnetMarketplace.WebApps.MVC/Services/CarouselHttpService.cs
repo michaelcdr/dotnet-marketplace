@@ -20,7 +20,7 @@ public class CarouselHttpService : ServiceBase, ICarouselHttpService
         _httpClient = httpClient;
         _httpContextAccessor = httpContextAccessor;
         _serializerService = serializerService;
-        _httpClient.BaseAddress = new Uri(options.Value.UrlCatalogApi);
+        _httpClient.BaseAddress = new Uri(options.Value.UrlContentManagerApi);
     }
 
     public async Task<List<CarouselViewModel>> GetItems()
