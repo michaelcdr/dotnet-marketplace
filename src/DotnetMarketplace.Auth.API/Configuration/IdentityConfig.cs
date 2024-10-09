@@ -1,4 +1,5 @@
 ﻿using DotnetMarketplace.Auth.API.Data;
+using DotnetMarketplace.Auth.API.Extensions;
 using DotnetMarketplace.Auth.API.Jwt;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -17,7 +18,7 @@ public static class IdentityConfig
         );
 
         services.AddIdentity<IdentityUser, IdentityRole>()
-            //.AddErrorDescriber<IdentityErrosEmPortugues>()
+            .AddErrorDescriber<IdentityMessagesToPortuguese>()
             .AddRoles<IdentityRole>()
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddDefaultTokenProviders();
