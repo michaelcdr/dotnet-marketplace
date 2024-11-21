@@ -10,6 +10,9 @@ using System.Security.Claims;
 
 namespace DotnetMarketplace.WebApps.MVC.Services;
 
+/// <summary>
+/// Service that comunicate with Autentication API.
+/// </summary>
 public class AuthHttpService : ServiceBase, IAuthHttpService
 {
     private readonly HttpClient _httpClient;

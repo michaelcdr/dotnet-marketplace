@@ -55,19 +55,32 @@
                     <li>
                         <a href="/">Home</a>
                     </li>
-                    <li class=" dropdown">
+                    <li class="nav-item dropdown">
                         <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" 
                            aria-haspopup="true" aria-expanded="false">
                             Categorias
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <ul class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
                             @foreach (CategoryItemMenu categoryMenuItem in Model.Categories)
                             {
-                                <a class="dropdown-item" asp-action="Index" asp-controller="Categorias" asp-route-id="@categoryMenuItem.Id">
-                                    @categoryMenuItem.Title
-                                </a>    
+                                <li>
+                                    <a class="dropdown-item" asp-action="Index" asp-controller="Categorias" asp-route-id="@categoryMenuItem.Id">@categoryMenuItem.Title</a>
+
+                                    @if (categoryMenuItem.SubCategories.Any())
+                                    {
+                                        <ul class="dropdown-menu">
+                                            @foreach (var item in categoryMenuItem.SubCategories)
+                                            {
+                                                <li><a class="dropdown-item" href="#">@item.Title</a></li>
+                                            }
+                                        </ul>
+                                    }
+                                </li>    
+
+                                
+
                             }
-                        </div>
+                        </ul>
                     </li>
                     <li>
                         <a asp-action="Index" asp-controller="Carrinho">Carrinho</a>

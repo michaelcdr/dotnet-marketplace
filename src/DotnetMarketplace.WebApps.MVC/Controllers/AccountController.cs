@@ -24,11 +24,11 @@ public class AccountController : MainController
     [Route("/minha-conta/entrar")]
     public IActionResult Login()
     {
-        if (User.Identity.IsAuthenticated) return RedirectToAction("Index", "Home");
+        if (User.Identity == null || !User.Identity.IsAuthenticated) return View();
 
-        return View();
+        return RedirectToAction("Index", "Home");
     }
-    
+
     [HttpPost]
     [Route("/minha-conta/entrar")]
     public async Task<IActionResult> Login(UserLogin model)

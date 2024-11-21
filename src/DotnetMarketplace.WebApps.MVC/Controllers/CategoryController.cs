@@ -2,7 +2,7 @@
 
 namespace DotnetMarketplace.WebApps.MVC.Controllers
 {
-    public class CategoryController : Controller
+    public class CategoryController : MainController
     {
         private readonly ILogger<CategoryController> _logger;
 

@@ -18,7 +18,9 @@ namespace MKT.Catalog.Infra.Repositories
 
         public async Task<List<Category>> GetCategories()
         {
-            return await _db.Categories.AsNoTracking().OrderBy(e => e.Title).ToListAsync();
+            return await _db.Categories.Include(s => s.SubCategories)
+                .AsNoTracking().OrderBy(e => e.Title)
+                .ToListAsync();
         }
 
         public void Dispose()

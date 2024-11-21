@@ -64,6 +64,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MKT.Catalog.API", "src\MKT.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MKT.ContentManager.API", "src\MKT.ContentManager.API\MKT.ContentManager.API.csproj", "{20AB7635-6053-4EFC-99D2-5F2346B5E941}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MKT.Auth.IntegrationTests", "tests\MKT.Auth.IntegrationTests\MKT.Auth.IntegrationTests.csproj", "{6E521CE7-63F9-4EF1-9D5E-08B946A2FC9B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -126,6 +128,10 @@ Global
 		{20AB7635-6053-4EFC-99D2-5F2346B5E941}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{20AB7635-6053-4EFC-99D2-5F2346B5E941}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{20AB7635-6053-4EFC-99D2-5F2346B5E941}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E521CE7-63F9-4EF1-9D5E-08B946A2FC9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E521CE7-63F9-4EF1-9D5E-08B946A2FC9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E521CE7-63F9-4EF1-9D5E-08B946A2FC9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E521CE7-63F9-4EF1-9D5E-08B946A2FC9B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -155,6 +161,7 @@ Global
 		{B0109D0A-BCD7-4F2E-8800-FB79696A9351} = {4BA06178-9CAD-45C2-9993-98F3BBE6207B}
 		{F920D885-4ADA-43CD-903B-71559B1EF7A6} = {A0FDB2C6-D434-4888-A9D4-9F83CB0963A7}
 		{20AB7635-6053-4EFC-99D2-5F2346B5E941} = {E8D851AC-42D9-4B7D-9A0F-4BE7BF2AF853}
+		{6E521CE7-63F9-4EF1-9D5E-08B946A2FC9B} = {4BA06178-9CAD-45C2-9993-98F3BBE6207B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2A7830BE-9810-4098-A590-E89A883429E1}

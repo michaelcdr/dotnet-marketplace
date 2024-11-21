@@ -47,6 +47,13 @@ public class CatalogService : ICatalogService
             {
                 Id = category.Id.ToString(), 
                 Title = category.Title,
+                SubCategories = category.SubCategories != null 
+                    ? category.SubCategories.Select(s => new SubCategoryItemMenu
+                        {
+                            Id = s.Id.ToString(),
+                            Title = s.Title
+                        }).ToList() 
+                    : [] 
             });
         }
 

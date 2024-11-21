@@ -9,7 +9,8 @@ public class CatalogContext : DbContext, IUnitOfWork
 {
     public CatalogContext(DbContextOptions<CatalogContext> options) : base(options)
     {
-
+        ChangeTracker.QueryTrackingBehavior  = QueryTrackingBehavior.NoTracking;
+        ChangeTracker.AutoDetectChangesEnabled = false;
     }
 
     public DbSet<Category> Categories { get; set; }
