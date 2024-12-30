@@ -6,5 +6,6 @@ namespace MKT.Catalog.Domain.Repositories
     public interface IProductRepository : IRepository<Product>
     {
         Task<List<Product>> GetAllOnSale();
+        Task<Product> GetById(Guid id);
     }
 }

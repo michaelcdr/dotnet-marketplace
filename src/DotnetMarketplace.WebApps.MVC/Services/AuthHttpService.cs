@@ -1,6 +1,5 @@
 ﻿using DotnetMarketplace.WebApps.MVC.Configuration;
 using DotnetMarketplace.WebApps.MVC.Models.Auth;
-using DotnetMarketplace.WebApps.MVC.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.Extensions.Options;
@@ -13,7 +12,7 @@ namespace DotnetMarketplace.WebApps.MVC.Services;
 /// <summary>
 /// Service that comunicate with Autentication API.
 /// </summary>
-public class AuthHttpService : ServiceBase, IAuthHttpService
+public class AuthHttpService : ServiceBase, IAuthApiService
 {
     private readonly HttpClient _httpClient;
     private readonly IHttpContextAccessor _httpContextAccessor;

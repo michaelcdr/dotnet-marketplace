@@ -1,14 +1,14 @@
 ﻿using DotnetMarketplace.WebApps.MVC.Models;
-using DotnetMarketplace.WebApps.MVC.Services.Interfaces;
+using DotnetMarketplace.WebApps.MVC.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DotnetMarketplace.WebApps.MVC.ViewComponents;
 
 public class NavViewComponent : ViewComponent
 {
-    private readonly ICatalogHttpService _catalogoHttpService;
+    private readonly ICatalogApiService _catalogoHttpService;
 
-    public NavViewComponent(ICatalogHttpService catalogoService)
+    public NavViewComponent(ICatalogApiService catalogoService)
     {
         _catalogoHttpService = catalogoService;
     }

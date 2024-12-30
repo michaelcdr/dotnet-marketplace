@@ -1,6 +1,7 @@
 ﻿using MKT.Catalog.API.Services;
 using MKT.Catalog.Domain.Entities;
 using MKT.Catalog.Domain.Repositories;
+using MKT.Core.Communication;
 
 namespace MKT.Catalog.API.Models.Services;
 
@@ -41,7 +42,7 @@ public class CatalogService : ICatalogService
 
         var categoriesViewModel = new List<CategoryItemMenu>();
 
-        foreach (var category in categories)
+        foreach (Category category in categories)
         {
             categoriesViewModel.Add(new CategoryItemMenu
             {
@@ -66,14 +67,26 @@ public class CatalogService : ICatalogService
 
         return new ProductsOnSaleViewModel
         {
-            ProductsOnSales = products.Select(e => new ProductOnSaleModel
-            {
-                ProductId = e.Id.ToString(),
-                Description = e.Description,
-                Image = e.Images.First().FileName,
-                Price = e.Price.ToString("C")
-
-            }).ToList()
+            ProductsOnSales = products
+                .Select(e => new ProductOnSaleModel {
+                    ProductId = e.Id.ToString(),
+                    Description = e.Description,
+                    Image = e.Images.First().FileName,
+                    Price = e.Price.ToString("C")
+                }).ToList()
         };
-    } 
+    }
+
+    public async Task<AppResponse> SetProductsOnSale(Guid productId, string user)
+    {
+        Product product = await _productRepository.GetById(productId);
+
+        if (product == null) return new AppResponse(false, "Produto não encontrado.", new List<string> { "Produto não encontrado." });
+
+        product.SetOnSale(user);
+        
+        await _productRepository.UnitOfWork.Commit();
+
+        return new AppResponse(true, "Produto atualizado com sucesso.");
+    }
 }

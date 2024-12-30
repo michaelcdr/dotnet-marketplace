@@ -1,6 +1,6 @@
 ﻿using DotnetMarketplace.WebApps.MVC.Models;
 using DotnetMarketplace.WebApps.MVC.Models.Auth;
-using DotnetMarketplace.WebApps.MVC.Services.Interfaces;
+using DotnetMarketplace.WebApps.MVC.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -10,10 +10,10 @@ namespace DotnetMarketplace.WebApps.MVC.Controllers;
 public class AccountController : MainController
 {
     private readonly ILogger<AccountController> _logger;
-    private readonly IAuthHttpService _authService;
+    private readonly IAuthApiService _authService;
 
     public AccountController(ILogger<AccountController> logger,
-                             IAuthHttpService authService)
+                             IAuthApiService authService)
     {
         _logger = logger;
         _authService = authService;

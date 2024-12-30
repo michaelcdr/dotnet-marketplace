@@ -59,5 +59,12 @@ namespace MKT.Catalog.Domain.Entities
 
             if (Stock < 0) throw new DomainException("Informe um estoque positivo");
         }
+
+        public void SetOnSale(string user)
+        {
+            OnSale = true;
+            UpdatedAt = DateTime.Now;
+            UpdatedBy = user;
+        }
     }
 }

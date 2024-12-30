@@ -1,0 +1,108 @@
+﻿@model CreateProductViewModel;
+
+@{
+    ViewData["Title"] = "Cadastrar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Cadastrar » <small>Livro</small></h1>
+
+<hr />
+
+<form asp-action="Cadastrar" role="form" enctype="multipart/form-data" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label asp-for="Titulo" class="control-label"></label>
+                <input asp-for="Titulo" class="form-control" />
+                <span asp-validation-for="Titulo" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label asp-for="Sku" class="control-label"></label>
+                <input asp-for="Sku" class="form-control" />
+                <span asp-validation-for="Sku" class="text-danger"></span>
+            </div>
+        </div>
+        
+        <div class="col-md-6" >
+            <div class="form-group">
+                <label asp-for="Estoque" class="control-label"></label>
+                <textarea asp-for="Estoque" class="form-control" style="height:150px"></textarea>
+                <span asp-validation-for="Estoque" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="OnSale">
+                    <input type="checkbox" id="OnSale" name="OnSale" value="true" /> OnSale
+                </label>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <label asp-for="CategoriaId" class="control-label">Categoria</label>
+                <div class="input-group">
+                    <select asp-for="CategoriaId" class="form-control">
+                        <option value="">Selecione...</option>
+                        @foreach (var item in Model.Categories)
+                        {
+                            <option value="@item.Value">@item.Key</option>
+                        }
+                    </select>
+                    <button class="btn btn-outline-dark" type="button" id="btn-adicionar-categoria">
+                        <i class="fa fa-plus"></i>
+                    </button>
+                </div>
+                <span asp-validation-for="CategoriaId" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <label asp-for="SubCategoriaId" class="control-label">SubCategoria</label>
+                <div class="input-group">
+                    <select asp-for="SubCategoriaId" class="form-control" disabled="disabled">
+                        <option value="">Selecione...</option>
+                    </select>
+                    <button class="btn btn-outline-dark" type="button" id="btn-adicionar-subcategoria" disabled="disabled">
+                        <i class="fa fa-plus"></i>
+                    </button>
+                </div>
+                <span asp-validation-for="SubCategoriaId" class="text-danger"></span>
+            </div>
+        </div>
+        
+        <div class="col-md-12" style="height:150px">
+            <div class="form-group">
+                <label asp-for="Descritivo" class="control-label"></label>
+                <textarea asp-for="Descritivo" class="form-control" style="height:150px"></textarea>
+                <span asp-validation-for="Descritivo" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <fieldset>
+                <legend>Imagens:</legend>
+                <label class="btn btn-outline-dark">
+                    Adicionar imagens
+                    <input id="Imagens" name="Imagens" type="file" multiple class="d-none" accept="image/jpeg" />
+                </label>
+                <div id="imagens-container" class="row"></div>
+            </fieldset> <hr />
+        </div>
+
+        <div class="col-md-12">
+            <a asp-action="Index" class="btn btn-warning">
+                <i class="fa fa-chevron-left"></i>
+            </a>
+            <button type="submit" class="btn btn-dark ">
+                <i class="fa fa-save"></i>
+                Cadastrar
+            </button>
+        </div>
+    </div>
+</form> 

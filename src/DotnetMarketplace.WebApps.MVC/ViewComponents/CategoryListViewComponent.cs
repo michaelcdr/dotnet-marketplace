@@ -1,14 +1,14 @@
 ﻿using DotnetMarketplace.WebApps.MVC.Models.Catalog;
-using DotnetMarketplace.WebApps.MVC.Services.Interfaces;
+using DotnetMarketplace.WebApps.MVC.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DotnetMarketplace.WebApps.MVC.ViewComponents
 {
     public class CategoryListViewComponent : ViewComponent
     {
-        private readonly ICatalogHttpService _catalogoService;
+        private readonly ICatalogApiService _catalogoService;
 
-        public CategoryListViewComponent(ICatalogHttpService catalogoService)
+        public CategoryListViewComponent(ICatalogApiService catalogoService)
         {
             _catalogoService = catalogoService; 
         }

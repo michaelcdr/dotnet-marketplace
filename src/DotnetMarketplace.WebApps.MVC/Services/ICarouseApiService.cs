@@ -1,8 +1,8 @@
 ﻿using DotnetMarketplace.WebApps.MVC.Models.Catalog;
 
-namespace DotnetMarketplace.WebApps.MVC.Services.Interfaces;
+namespace DotnetMarketplace.WebApps.MVC.Services;
 
-public interface ICarouselHttpService
+public interface ICarouseApiService
 {
     Task<List<CarouselViewModel>> GetItems();
 }

@@ -1,5 +1,4 @@
 ﻿using DotnetMarketplace.WebApps.MVC.Services;
-using DotnetMarketplace.WebApps.MVC.Services.Interfaces;
 using MKT.API.Core.User;
 using MKT.Core.Bus;
 using MKT.Core.Services;
@@ -14,9 +13,9 @@ public static class DependencyInjectionConfig
 
         services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<Program>());
 
-        services.AddHttpClient<IAuthHttpService, AuthHttpService>();
-        services.AddHttpClient<ICatalogHttpService, CatalogHttpService>();
-        services.AddHttpClient<ICarouselHttpService, CarouselHttpService>();
+        services.AddHttpClient<IAuthApiService, AuthHttpService>();
+        services.AddHttpClient<ICatalogApiService, CatalogApiService>();
+        services.AddHttpClient<ICarouseApiService, CarouseApiService>();
 
         services.AddScoped<IAppUser, AppUser>();
         services.AddScoped<IMediatrHandler, MediatrHandler>();

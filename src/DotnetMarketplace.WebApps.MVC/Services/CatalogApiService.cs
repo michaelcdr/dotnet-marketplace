@@ -1,18 +1,19 @@
 ﻿using DotnetMarketplace.WebApps.MVC.Configuration;
+using DotnetMarketplace.WebApps.MVC.Models.Admin;
 using DotnetMarketplace.WebApps.MVC.Models.Catalog;
-using DotnetMarketplace.WebApps.MVC.Services.Interfaces;
 using Microsoft.Extensions.Options;
+using MKT.Core.Communication;
 using MKT.Core.Services;
 
 namespace DotnetMarketplace.WebApps.MVC.Services;
 
-public class CatalogHttpService : ServiceBase, ICatalogHttpService
+public class CatalogApiService : ServiceBase, ICatalogApiService
 {
     private readonly HttpClient _httpClient;
     private readonly IHttpContextAccessor _httpContextAccessor;
     private readonly ISerializerService _serializerService;
 
-    public CatalogHttpService(HttpClient httpClient,
+    public CatalogApiService(HttpClient httpClient,
                               IHttpContextAccessor httpContextAccessor,
                               ISerializerService serializerService,
                               IOptions<AppSettings> options) : base(serializerService)
@@ -45,5 +46,19 @@ public class CatalogHttpService : ServiceBase, ICatalogHttpService
 
         var result = await Deserialize<ProductsOnSaleViewModel>(response);
         return result;
+    }
+
+    public async Task<AppResponse> CreateProduct(CreateProductViewModel model)
+    {
+        StringContent content = FormatContent(model);
+
+        HttpResponseMessage response = await _httpClient.PostAsync("api/catalog/product/onsales", content);
+
+        if (!response.IsSuccessStatusCode)
+        {
+            return new AppResponse(false, "Não foi possivel criar o produto.");
+        }
+
+        return new AppResponse(true, "Produto criado com sucesso.");
     }
 }
